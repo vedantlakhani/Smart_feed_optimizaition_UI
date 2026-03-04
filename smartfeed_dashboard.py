@@ -1,7 +1,7 @@
 """
 ═══════════════════════════════════════════════════════════════
   AxNano Smart-Feed Algorithm v9 — Streamlit Dashboard
-  Industrial Dark Theme · SCWO Reactor Optimization
+  Industrial Theme · SCWO Reactor Optimization
   ────────────────────────────────────────────────────
   PRECISELY ALIGNED with smart_feed_v9 package
 ═══════════════════════════════════════════════════════════════
@@ -63,85 +63,93 @@ except ImportError as e:
 
 
 # ═══════════════════════════════════════════════════════════════
-# THEME
+# THEME — Industrial Dark (steel + amber)
 # ═══════════════════════════════════════════════════════════════
-DARK_BG = "#080F1A"
-PANEL_BG = "#0C1624"
-BORDER = "#1A2738"
-TEXT_PRI = "#C8D6E5"
-TEXT_DIM = "#4A5A6D"
-ACCENT = "#F59E0B"
-BLUE = "#3B82F6"
-GREEN = "#10B981"
-RED = "#EF4444"
-PURPLE = "#8B5CF6"
+BG = "#12151A"
+PANEL_BG = "#1A1E26"
+BORDER = "#2A3040"
+TEXT_PRI = "#D4DAE3"
+TEXT_DIM = "#6B7A8D"
+ACCENT = "#F59E0B"          # industrial amber
+BLUE = "#5E81AC"            # steel blue
+GREEN = "#4CAF50"           # indicator green
+RED = "#E74C3C"             # alarm red
+PURPLE = "#9B8EC4"          # muted violet
+CYAN = "#56B6C2"            # coolant cyan
 STREAM_COLORS = [ACCENT, BLUE, GREEN, RED, PURPLE]
 
 CSS = f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
-.stApp {{ background:{DARK_BG}; color:{TEXT_PRI}; font-family:'IBM Plex Sans',sans-serif; }}
-.stApp header {{ background:{DARK_BG}!important; }}
-section[data-testid="stSidebar"] {{ background:#0A1420!important; border-right:1px solid {BORDER}; }}
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+.stApp {{ background:{BG}; color:{TEXT_PRI}; font-family:'Inter',sans-serif; }}
+.stApp header {{ background:{BG}!important; border-bottom:2px solid {BORDER}; }}
+section[data-testid="stSidebar"] {{ background:{PANEL_BG}!important; border-right:2px solid {BORDER}; }}
 section[data-testid="stSidebar"] .stMarkdown p,
 section[data-testid="stSidebar"] label {{ color:{TEXT_PRI}!important; }}
-div[data-testid="stMetric"] {{ background:{PANEL_BG}; border:1px solid {BORDER}; border-radius:8px; padding:16px; }}
-div[data-testid="stMetric"] label {{ color:{TEXT_DIM}!important; font-family:'JetBrains Mono',monospace!important; font-size:11px!important; text-transform:uppercase; letter-spacing:0.08em; }}
-div[data-testid="stMetric"] div[data-testid="stMetricValue"] {{ color:{ACCENT}!important; font-family:'JetBrains Mono',monospace!important; }}
-div[data-testid="stMetric"] div[data-testid="stMetricDelta"] {{ font-family:'JetBrains Mono',monospace!important; }}
-.stTabs [data-baseweb="tab-list"] {{ background:#0A1420; border-bottom:1px solid {BORDER}; }}
-.stTabs [data-baseweb="tab"] {{ color:{TEXT_DIM}!important; font-family:'JetBrains Mono',monospace!important; font-size:12px!important; letter-spacing:0.06em; }}
-.stTabs [aria-selected="true"] {{ color:{ACCENT}!important; border-bottom:2px solid {ACCENT}!important; }}
-.stButton>button {{ background:{ACCENT}22!important; border:1px solid {ACCENT}55!important; color:{ACCENT}!important; font-family:'JetBrains Mono',monospace!important; font-weight:600; }}
-.stButton>button:hover {{ background:{ACCENT}44!important; box-shadow:0 0 20px {ACCENT}22; }}
-.stButton>button[kind="primary"] {{ background:linear-gradient(135deg,{ACCENT},#D97706)!important; color:{DARK_BG}!important; border:none!important; font-weight:700; }}
-.stNumberInput input,.stTextInput input {{ background:#0D1520!important; border:1px solid {BORDER}!important; color:{TEXT_PRI}!important; font-family:'JetBrains Mono',monospace!important; }}
-.streamlit-expanderHeader {{ background:{PANEL_BG}!important; border:1px solid {BORDER}!important; color:{TEXT_PRI}!important; font-family:'JetBrains Mono',monospace!important; }}
+div[data-testid="stMetric"] {{ background:{PANEL_BG}; border:1px solid {BORDER}; border-top:3px solid {ACCENT}; border-radius:4px; padding:18px; }}
+div[data-testid="stMetric"] label {{ color:{TEXT_DIM}!important; font-family:'JetBrains Mono',monospace!important; font-size:10px!important; text-transform:uppercase; letter-spacing:0.12em; font-weight:600; }}
+div[data-testid="stMetric"] div[data-testid="stMetricValue"] {{ color:{ACCENT}!important; font-family:'JetBrains Mono',monospace!important; font-size:26px!important; font-weight:700!important; }}
+div[data-testid="stMetric"] div[data-testid="stMetricDelta"] {{ font-family:'JetBrains Mono',monospace!important; font-size:12px!important; font-weight:600!important; }}
+.stTabs [data-baseweb="tab-list"] {{ background:{BG}; border-bottom:2px solid {BORDER}; }}
+.stTabs [data-baseweb="tab"] {{ color:{TEXT_DIM}!important; font-family:'JetBrains Mono',monospace!important; font-size:12px!important; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:10px 18px!important; }}
+.stTabs [aria-selected="true"] {{ color:{ACCENT}!important; border-bottom:3px solid {ACCENT}!important; background:rgba(245,158,11,0.06)!important; border-radius:2px 2px 0 0; }}
+.stButton>button {{ background:rgba(245,158,11,0.08)!important; border:1px solid rgba(245,158,11,0.25)!important; color:{ACCENT}!important; font-family:'JetBrains Mono',monospace!important; font-weight:600; letter-spacing:0.04em; border-radius:3px!important; transition:all 0.15s ease; }}
+.stButton>button:hover {{ background:rgba(245,158,11,0.15)!important; border-color:{ACCENT}!important; }}
+.stDataFrame {{ border:1px solid {BORDER}; border-radius:4px; overflow:hidden; }}
+.stDataFrame th {{ background:#1E2430!important; color:{ACCENT}!important; font-family:'JetBrains Mono',monospace!important; font-size:10px!important; font-weight:700!important; text-transform:uppercase; letter-spacing:0.08em; }}
+.stDataFrame td {{ font-family:'JetBrains Mono',monospace!important; font-size:12px!important; font-weight:500; color:{TEXT_PRI}!important; }}
+.stButton>button[kind="primary"] {{ background:{ACCENT}!important; color:#12151A!important; border:none!important; font-weight:800; font-size:13px!important; padding:10px 28px!important; letter-spacing:0.06em; border-radius:3px!important; box-shadow:0 0 20px rgba(245,158,11,0.25); transition:all 0.15s ease; }}
+.stButton>button[kind="primary"]:hover {{ background:#D97706!important; box-shadow:0 0 30px rgba(245,158,11,0.4); }}
+.stNumberInput label,.stTextInput label,.stTextArea label {{ color:{TEXT_PRI}!important; font-family:'JetBrains Mono',monospace!important; font-size:12px!important; font-weight:600!important; }}
+.stNumberInput input,.stTextInput input,.stTextArea textarea {{ background:#151920!important; border:1px solid {BORDER}!important; color:{TEXT_PRI}!important; font-family:'JetBrains Mono',monospace!important; border-radius:3px!important; font-weight:500; }}
+[data-baseweb="input"] {{ background-color:#151920!important; }}
+[data-baseweb="input"] input {{ background-color:#151920!important; color:{TEXT_PRI}!important; }}
+.stSelectbox [data-baseweb="select"] {{ background-color:#151920!important; }}
+.stSelectbox [data-baseweb="select"] > div {{ background-color:#151920!important; color:{TEXT_PRI}!important; }}
+.streamlit-expanderHeader {{ background:{PANEL_BG}!important; border:1px solid {BORDER}!important; color:{TEXT_PRI}!important; font-family:'JetBrains Mono',monospace!important; border-radius:4px!important; font-weight:600!important; }}
+[data-testid="stExpander"] summary {{ color:{TEXT_PRI}!important; }}
+[data-testid="stExpander"] summary span {{ color:{TEXT_PRI}!important; font-weight:600!important; }}
+[data-testid="stExpander"] details {{ border:1px solid {BORDER}!important; background:{PANEL_BG}!important; }}
+[data-testid="stExpander"] summary p {{ color:{TEXT_PRI}!important; font-size:14px!important; font-weight:600!important; }}
 hr {{ border-color:{BORDER}!important; }}
 .mono {{ font-family:'JetBrains Mono',monospace; }}
 .dim {{ color:{TEXT_DIM}; }}
-.header-badge {{ display:inline-block; background:{ACCENT}18; border:1px solid {ACCENT}33; color:{ACCENT}; padding:2px 10px; border-radius:4px; font-family:'JetBrains Mono',monospace; font-size:11px; font-weight:600; }}
-.status-ok {{ display:inline-block; width:7px; height:7px; border-radius:50%; background:{GREEN}; box-shadow:0 0 6px {GREEN}; margin-right:6px; }}
-.status-warn {{ display:inline-block; width:7px; height:7px; border-radius:50%; background:{RED}; box-shadow:0 0 6px {RED}; margin-right:6px; }}
+.header-badge {{ display:inline-block; background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.35); color:{ACCENT}; padding:3px 10px; border-radius:2px; font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; }}
+.status-ok {{ display:inline-block; width:8px; height:8px; border-radius:50%; background:{GREEN}; box-shadow:0 0 6px rgba(76,175,80,0.5); margin-right:6px; animation:pulse-green 2s ease-in-out infinite; }}
+.status-warn {{ display:inline-block; width:8px; height:8px; border-radius:50%; background:{RED}; box-shadow:0 0 6px rgba(231,76,60,0.5); margin-right:6px; animation:pulse-red 1s ease-in-out infinite; }}
+@keyframes pulse-green {{ 0%,100% {{ box-shadow:0 0 4px rgba(76,175,80,0.3); }} 50% {{ box-shadow:0 0 10px rgba(76,175,80,0.6); }} }}
+@keyframes pulse-red {{ 0%,100% {{ box-shadow:0 0 4px rgba(231,76,60,0.3); }} 50% {{ box-shadow:0 0 12px rgba(231,76,60,0.7); }} }}
 </style>
 """
 
-PLOTLY_LAYOUT = dict(
-    paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
-    font=dict(family="JetBrains Mono, monospace", color=TEXT_PRI, size=11),
-    margin=dict(l=40, r=20, t=40, b=40),
-    xaxis=dict(gridcolor="#111D2B", zerolinecolor="#1A2738"),
-    yaxis=dict(gridcolor="#111D2B", zerolinecolor="#1A2738"),
-)
+def _rgba(hex_color, alpha):
+    """Convert #RRGGBB + alpha (0.0–1.0) to rgba() string for Plotly."""
+    h = hex_color.lstrip('#')
+    r, g, b = int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16)
+    return f"rgba({r},{g},{b},{alpha})"
+
+def _layout(**kw):
+    """Base Plotly layout with per-chart overrides (avoids duplicate-kwarg errors)."""
+    base = dict(
+        paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+        font=dict(family="JetBrains Mono, monospace", color=TEXT_PRI, size=11),
+        margin=dict(l=40, r=20, t=40, b=40),
+        xaxis=dict(gridcolor="#2A3040", zerolinecolor="#3A4555"),
+        yaxis=dict(gridcolor="#2A3040", zerolinecolor="#3A4555"),
+    )
+    base.update(kw)
+    return base
 
 
 # ═══════════════════════════════════════════════════════════════
 # CHART BUILDERS (use real Schedule / PhaseResult objects)
 # ═══════════════════════════════════════════════════════════════
 
-def _gauge(value, title, max_val, color, suffix=""):
-    fig = go.Figure(go.Indicator(
-        mode="gauge+number", value=value,
-        title=dict(text=title, font=dict(size=12, color=TEXT_DIM)),
-        number=dict(font=dict(size=22, color=color), suffix=suffix),
-        gauge=dict(
-            axis=dict(range=[0, max_val], tickcolor=TEXT_DIM, tickfont=dict(size=9)),
-            bar=dict(color=color, thickness=0.7),
-            bgcolor="#111D2B", borderwidth=1, bordercolor=BORDER,
-            steps=[dict(range=[0, max_val*0.7], color="#111D2B"),
-                   dict(range=[max_val*0.7, max_val*0.9], color="#1A2332"),
-                   dict(range=[max_val*0.9, max_val], color="#2A1A1A")],
-        ),
-    ))
-    fig.update_layout(**PLOTLY_LAYOUT, height=180, margin=dict(l=20, r=20, t=50, b=10))
-    return fig
-
 
 def _cost_comparison_bar(baseline: Schedule, optimized: Schedule):
     """5-component cost breakdown, Baseline vs Optimized."""
     cats = ["Diesel", "NaOH", "DI Water", "Electricity", "Labor"]
     keys = ["cost_diesel", "cost_naoh", "cost_water", "cost_electricity", "cost_labor"]
-    colors = [ACCENT, GREEN, BLUE, PURPLE, RED]
 
     bv = [sum(getattr(p, k) for p in baseline.phases) for k in keys]
     ov = [sum(getattr(p, k) for p in optimized.phases) for k in keys]
@@ -149,108 +157,59 @@ def _cost_comparison_bar(baseline: Schedule, optimized: Schedule):
     fig = go.Figure()
     fig.add_trace(go.Bar(
         y=cats, x=bv, orientation="h", name="Baseline",
-        marker_color="#1E2D3D",
+        marker_color="#3A4555",
         text=[f"${v:.0f}" for v in bv], textposition="auto",
         textfont=dict(color=TEXT_DIM, size=10),
     ))
     fig.add_trace(go.Bar(
         y=cats, x=ov, orientation="h", name="Optimized",
-        marker_color=colors,
+        marker_color=ACCENT,
         text=[f"${v:.0f}" for v in ov], textposition="auto",
-        textfont=dict(color=TEXT_PRI, size=10),
+        textfont=dict(color="#12151A", size=10, family="JetBrains Mono"),
     ))
-    fig.update_layout(**PLOTLY_LAYOUT, barmode="overlay", height=260,
+    fig.update_layout(**_layout(barmode="overlay", height=260,
                       legend=dict(orientation="h", y=1.15, font=dict(size=10)),
-                      margin=dict(l=80, r=20, t=40, b=20))
+                      margin=dict(l=80, r=20, t=40, b=20)))
     return fig
 
 
 def _phase_timeline(optimized: Schedule):
-    """Gantt-style timeline from Schedule.phases."""
+    """Vertical phase list: label [feed plan] → time and cost."""
     if not optimized or not optimized.phases:
         return None
-    fig = go.Figure()
-    t = 0
+    # Build horizontal stacked bar per phase row
+    phase_labels = []
     for i, ph in enumerate(optimized.phases):
-        ratio_str = ":".join(f"{sid}={r}" for sid, r in ph.streams.items())
-        fig.add_trace(go.Bar(
-            x=[ph.runtime_min], y=["Schedule"], orientation="h",
-            base=t, name=f"P{i+1}",
-            marker_color=STREAM_COLORS[i % len(STREAM_COLORS)] + "BB",
-            text=f"P{i+1} [{ratio_str}] {ph.runtime_min:.0f}min · ${ph.cost_total:.0f}",
-            textposition="inside", textfont=dict(size=9, color=TEXT_PRI),
-            hovertext=(f"Phase {i+1}: [{ratio_str}]<br>"
-                       f"W={ph.W:.2f} L/min<br>Q={ph.Q_phase:.1f}L<br>"
-                       f"Cost: ${ph.cost_total:.2f}"),
-        ))
-        t += ph.runtime_min
-    fig.update_layout(**PLOTLY_LAYOUT, barmode="stack", height=110, showlegend=False,
-                      xaxis_title="Runtime (min)", yaxis=dict(visible=False),
-                      margin=dict(l=60, r=20, t=10, b=40))
-    return fig
+        parts = " + ".join(f"{sid}×{r}" for sid, r in ph.streams.items())
+        phase_labels.append(f"Phase {i+1}: {parts}")
+    # Reverse for bottom-to-top display
+    phase_labels = phase_labels[::-1]
+    phases_rev = list(reversed(optimized.phases))
 
-
-def _blend_radar(blend: BlendProperties, cfg: SystemConfig):
-    cats = ["BTU/lb", "pH", "Solid%", "Salt ppm", "F⁻ ppm"]
-    vals = [
-        min(blend.btu_per_lb / 15000, 1.0),
-        blend.pH / 14.0,
-        blend.solid_pct / (cfg.solid_max_pct * 3),
-        blend.salt_ppm / (cfg.salt_max_ppm * 3),
-        blend.f_ppm / 20000,
-    ]
-    vals.append(vals[0]); cats.append(cats[0])
     fig = go.Figure()
-    fig.add_trace(go.Scatterpolar(
-        r=vals, theta=cats, fill="toself",
-        fillcolor=f"{ACCENT}22", line=dict(color=ACCENT, width=2),
-        marker=dict(size=5, color=ACCENT),
+    fig.add_trace(go.Bar(
+        y=phase_labels,
+        x=[ph.runtime_min for ph in phases_rev],
+        orientation="h",
+        marker_color=[_rgba(STREAM_COLORS[i % len(STREAM_COLORS)], 0.8)
+                      for i in range(len(phases_rev)-1, -1, -1)],
+        text=[f"{ph.runtime_min:.0f} min · ${ph.cost_total:.0f}" for ph in phases_rev],
+        textposition="inside",
+        textfont=dict(size=11, color="#FFFFFF", family="JetBrains Mono"),
+        hovertext=[f"Feed: {' + '.join(f'{sid}×{r}' for sid, r in ph.streams.items())}<br>"
+                   f"Throughput: {ph.W:.2f} L/min<br>"
+                   f"Volume: {ph.Q_phase:.1f} L<br>"
+                   f"Cost: ${ph.cost_total:.2f}" for ph in phases_rev],
+        hoverinfo="text",
     ))
-    fig.update_layout(**PLOTLY_LAYOUT, height=270,
-                      polar=dict(bgcolor="rgba(0,0,0,0)",
-                                 radialaxis=dict(visible=True, range=[0,1],
-                                                 gridcolor="#111D2B",
-                                                 tickfont=dict(size=8, color=TEXT_DIM)),
-                                 angularaxis=dict(gridcolor="#1A2738",
-                                                  tickfont=dict(size=10, color=TEXT_PRI))),
-                      margin=dict(l=40, r=40, t=30, b=30))
+    h = max(120, 50 * len(optimized.phases) + 40)
+    fig.update_layout(**_layout(barmode="stack", height=h, showlegend=False,
+                      xaxis_title="Runtime (min)",
+                      yaxis=dict(tickfont=dict(size=10, color=TEXT_PRI)),
+                      margin=dict(l=200, r=20, t=10, b=40)))
     return fig
 
 
-def _sensitivity(streams, base_cfg, param, label, x_range):
-    """Vary one SystemConfig param, plot baseline total cost."""
-    base_dict = {f: getattr(base_cfg, f) for f in SystemConfig.__dataclass_fields__}
-    costs = []
-    for v in x_range:
-        try:
-            cfg_copy = SystemConfig(**{**base_dict, param: v})
-            bl = calc_baseline(streams, cfg_copy)
-            costs.append(bl.total_cost if bl.total_cost < 1e8 else None)
-        except Exception:
-            costs.append(None)
-    valid = [(x, c) for x, c in zip(x_range, costs) if c is not None]
-    if not valid:
-        return None
-    xs, ys = zip(*valid)
-
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=list(xs), y=list(ys), mode="lines+markers",
-                             line=dict(color=ACCENT, width=2),
-                             marker=dict(size=4, color=ACCENT),
-                             fill="tozeroy", fillcolor=f"{ACCENT}11"))
-    # Current value marker
-    cur = getattr(base_cfg, param)
-    try:
-        cur_bl = calc_baseline(streams, base_cfg)
-        fig.add_trace(go.Scatter(x=[cur], y=[cur_bl.total_cost], mode="markers",
-                                 marker=dict(size=10, color=RED, symbol="diamond"),
-                                 name="Current"))
-    except Exception:
-        pass
-    fig.update_layout(**PLOTLY_LAYOUT, height=240, showlegend=False,
-                      xaxis_title=label, yaxis_title="Baseline Cost ($)",
-                      margin=dict(l=60, r=20, t=20, b=50))
-    return fig
 
 
 # ═══════════════════════════════════════════════════════════════
@@ -332,35 +291,40 @@ code/
     h1, h2 = st.columns([5, 5])
     with h1:
         st.markdown(f"""
-        <div style="display:flex;align-items:center;gap:12px;padding:4px 0;">
-            <div style="width:36px;height:36px;border-radius:6px;
-                background:linear-gradient(135deg,{ACCENT}22,{ACCENT}08);
-                border:1px solid {ACCENT}33;display:flex;align-items:center;
-                justify-content:center;font-size:16px;font-weight:700;
-                color:{ACCENT};font-family:JetBrains Mono;">▲</div>
+        <div style="display:flex;align-items:center;gap:14px;padding:6px 0;">
+            <div style="width:42px;height:42px;border-radius:3px;
+                background:{ACCENT};
+                display:flex;align-items:center;
+                justify-content:center;font-size:18px;font-weight:800;
+                color:#12151A;font-family:JetBrains Mono;
+                box-shadow:0 0 20px rgba(245,158,11,0.3);">▲</div>
             <div>
-                <div style="font-size:18px;font-weight:600;color:#E2E8F0;letter-spacing:-0.02em;">
-                    AxNano Smart-Feed</div>
-                <div style="font-size:10px;color:{TEXT_DIM};font-family:JetBrains Mono;">
-                    SCWO Reactor Optimization v9 ·
-                    <span class="header-badge">LIVE ALGORITHM</span></div>
+                <div style="font-size:20px;font-weight:700;color:{TEXT_PRI};letter-spacing:0.02em;
+                    font-family:'JetBrains Mono',monospace;">
+                    AXNANO SMART-FEED</div>
+                <div style="font-size:10px;color:{TEXT_DIM};font-family:JetBrains Mono;margin-top:3px;
+                    letter-spacing:0.1em;text-transform:uppercase;">
+                    SCWO REACTOR OPTIMIZATION v9 ·
+                    <span class="header-badge">LIVE</span></div>
             </div>
         </div>""", unsafe_allow_html=True)
     with h2:
-        st.markdown(f"""<div style="text-align:right;padding-top:10px;">
-            <span class="mono dim" style="font-size:10px;">
+        st.markdown(f"""<div style="text-align:right;padding-top:12px;">
+            <span class="mono" style="font-size:10px;color:{TEXT_DIM};letter-spacing:0.06em;">
             <span class="status-ok"></span>SYSTEM NOMINAL │
-            F_total: {cfg.F_total} L/min │ η: {cfg.eta} │
-            BTU_target: {cfg.BTU_target:.0f} │ P_system: {cfg.P_system:.0f}kW
+            F_total: <b style="color:{ACCENT}">{cfg.F_total}</b> L/min │
+            η: <b style="color:{ACCENT}">{cfg.eta}</b> │
+            BTU: <b style="color:{ACCENT}">{cfg.BTU_target:.0f}</b> │
+            P: <b style="color:{ACCENT}">{cfg.P_system:.0f}</b>kW
             </span></div>""", unsafe_allow_html=True)
     st.markdown("---")
 
     # ═══ SIDEBAR: SystemConfig editor ═══
     with st.sidebar:
-        st.markdown(f'<div class="mono" style="color:{ACCENT};font-size:13px;font-weight:600;letter-spacing:0.05em;">⚙ SYSTEM CONFIG</div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="mono" style="color:{ACCENT};font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;">⚙ SYSTEM CONFIG</div>', unsafe_allow_html=True)
         st.markdown("")
 
-        with st.expander("Reactor Parameters «A1,A3»", expanded=True):
+        with st.expander("Reactor Parameters", expanded=True):
             cfg.F_total = st.number_input("F_total (L/min)", 1.0, 50.0, cfg.F_total, 0.5)
             cfg.P_system = st.number_input("P_system (kW)", 100.0, 1000.0, cfg.P_system, 10.0)
             cfg.BTU_diesel = st.number_input("BTU_diesel (BTU/lb)", 10000.0, 25000.0, cfg.BTU_diesel, 100.0)
@@ -373,14 +337,14 @@ code/
             cfg.pH_max = st.number_input("pH_max", 7.0, 14.0, cfg.pH_max, 0.5)
             cfg.salt_max_ppm = st.number_input("salt_max_ppm", 500.0, 50000.0, cfg.salt_max_ppm, 500.0)
 
-        with st.expander("Unit Costs «A5»"):
+        with st.expander("Unit Costs"):
             cfg.cost_diesel_per_L = st.number_input("Diesel ($/L)", 0.1, 10.0, cfg.cost_diesel_per_L, 0.1)
             cfg.cost_naoh_per_L = st.number_input("NaOH ($/L)", 0.1, 10.0, cfg.cost_naoh_per_L, 0.01)
             cfg.cost_water_per_L = st.number_input("DI Water ($/L)", 0.0001, 0.1, cfg.cost_water_per_L, 0.0001, format="%.4f")
             cfg.cost_electricity_per_kWh = st.number_input("Electricity ($/kWh)", 0.01, 1.0, cfg.cost_electricity_per_kWh, 0.01)
             cfg.cost_labor_per_hr = st.number_input("Labor ($/hr)", 10.0, 500.0, cfg.cost_labor_per_hr, 10.0)
 
-        with st.expander("K-Value Calibration «B2,B3»"):
+        with st.expander("K-Value Calibration"):
             cfg.K_F_TO_ACID = st.number_input("K_F_TO_ACID (meq/L·ppm)", 0.01, 0.2, cfg.K_F_TO_ACID, 0.001, format="%.4f")
             cfg.K_PH_TO_BASE = st.number_input("K_PH_TO_BASE (meq/L·pH)", 5.0, 200.0, cfg.K_PH_TO_BASE, 5.0)
             cfg.K_ACID_TO_NAOH_VOL = st.number_input("K_ACID_TO_NAOH_VOL (L/meq)", 1e-6, 1e-3, cfg.K_ACID_TO_NAOH_VOL, 1e-6, format="%.2e")
@@ -427,9 +391,128 @@ code/
                     st.error(str(e))
 
     # ═══ TABS ═══
-    tab_streams, tab_opt, tab_phases, tab_sens = st.tabs([
-        "◆ WASTE STREAMS", "◆ OPTIMIZATION", "◆ PHASE DETAILS", "◆ SENSITIVITY",
+    tab_intro, tab_streams, tab_opt, tab_ops, tab_phases = st.tabs([
+        "◆ INTRODUCTION", "◆ WASTE STREAMS", "◆ OPTIMIZATION", "◆ OPERATION", "◆ PHASE DETAILS",
     ])
+
+    # ═══════════════════════════════════════════════════════════
+    # TAB 0: INTRODUCTION
+    # ═══════════════════════════════════════════════════════════
+    with tab_intro:
+        # ── shared card / section styles ──
+        _CARD = f"background:{PANEL_BG};border:1px solid {BORDER};border-radius:8px;padding:24px 28px;"
+        _CARD_ACC = f"background:{PANEL_BG};border:1px solid {BORDER};border-top:3px solid {ACCENT};border-radius:8px;padding:20px 24px;"
+        _SEC_TITLE = f"font-family:'JetBrains Mono',monospace;font-size:10px;color:{ACCENT};font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 14px 0;"
+
+        # ────────────────────── Hero Banner ──────────────────────
+        st.markdown(f"""
+<div style="text-align:center;padding:36px 20px 28px 20px;">
+  <div style="font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:800;color:{TEXT_PRI};letter-spacing:0.04em;">
+    SMART<span style="color:{ACCENT};">-</span>FEED</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:{TEXT_DIM};letter-spacing:0.15em;margin-top:6px;">
+    SCWO REACTOR · FEED OPTIMIZATION · v9</div>
+  <div style="width:60px;height:3px;background:{ACCENT};margin:16px auto 0 auto;border-radius:2px;"></div>
+</div>
+""", unsafe_allow_html=True)
+
+        # ──────────────── About + Key Highlights (two cols) ──────────────────
+        st.markdown(f"""
+<div style="display:flex;gap:20px;margin-bottom:24px;flex-wrap:wrap;align-items:stretch;">
+  <div style="flex:3;min-width:340px;{_CARD}display:flex;flex-direction:column;justify-content:center;">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:{ACCENT};font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin:0 0 16px 0;">What is Smart-Feed?</div>
+    <div style="color:{TEXT_PRI};font-size:14px;line-height:1.9;">
+      AxNano's SCWO (Supercritical Water Oxidation) reactor destroys <b style="color:{CYAN};">PFAS</b> and hazardous waste.
+      Different waste streams have complementary properties — high BTU vs low BTU,
+      acidic vs alkaline, solid vs liquid.<br><br>
+      <span style="color:{ACCENT};font-weight:700;">Smart-Feed</span> finds the optimal blending plan to minimize
+      external inputs (diesel, NaOH, DI water), reducing operating cost by up to
+      <span style="color:{GREEN};font-weight:700;">40–50 %</span> compared to processing each stream individually.
+    </div>
+  </div>
+  <div style="flex:2;min-width:240px;display:flex;flex-direction:column;gap:12px;justify-content:center;">
+    <div style="{_CARD_ACC}text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:800;color:{ACCENT};">40-50%</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:{TEXT_DIM};letter-spacing:0.1em;margin-top:4px;">COST REDUCTION</div>
+    </div>
+    <div style="{_CARD_ACC}text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:800;color:{ACCENT};">≤ 5</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:{TEXT_DIM};letter-spacing:0.1em;margin-top:4px;">WASTE STREAMS</div>
+    </div>
+    <div style="{_CARD_ACC}text-align:center;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:800;color:{ACCENT};">EXACT</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:{TEXT_DIM};letter-spacing:0.1em;margin-top:4px;">GLOBAL OPTIMUM</div>
+    </div>
+  </div>
+</div>
+""", unsafe_allow_html=True)
+
+        # ──────────────── Dashboard Tabs — compact list ──────────────────
+        _tab_items = [
+            ("①", "WASTE STREAMS",  "Input and edit waste stream properties — quantity, BTU, pH, fluorine, solids, salt"),
+            ("②", "OPTIMIZATION",   "Run the algorithm, view cost savings, cost breakdown, and feed schedule"),
+            ("③", "OPERATION",      "Operator instructions — per-phase pump rates, additive flow rates, runtime"),
+            ("④", "PHASE DETAILS",  "Engineering deep-dive — blend properties, safety checks, full cost itemization"),
+        ]
+        _list_html = ""
+        for num, name, desc in _tab_items:
+            _list_html += (
+                f'<div style="display:flex;align-items:baseline;gap:10px;padding:10px 0;'
+                f'border-bottom:1px solid {BORDER};">'
+                f'<span style="font-family:\'JetBrains Mono\',monospace;font-size:14px;color:{ACCENT};font-weight:700;min-width:22px;">{num}</span>'
+                f'<span style="font-family:\'JetBrains Mono\',monospace;font-size:12px;color:{TEXT_PRI};font-weight:700;letter-spacing:0.04em;min-width:140px;">{name}</span>'
+                f'<span style="color:{TEXT_DIM};font-size:11px;">{desc}</span>'
+                f'</div>'
+            )
+
+        st.markdown(
+            f'<div style="{_CARD}margin-bottom:28px;">'
+            f'<div style="{_SEC_TITLE}">Dashboard Tabs</div>'
+            f'{_list_html}'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+        # ──────────────── Flowchart: HOW TO USE ──────────────────
+        _ARROW = f"display:flex;align-items:center;padding:0 2px;font-size:22px;color:{ACCENT};font-weight:700;"
+
+        _flow_steps = [
+            (ACCENT, "1", "WASTE STREAMS",  "Enter waste inventory<br>or load from JSON"),
+            (BLUE,   "2", "CONFIGURE",      "Adjust reactor params<br>in sidebar if needed"),
+            (GREEN,  "3", "OPTIMIZE",       "Click ▶ RUN<br>OPTIMIZATION"),
+            (PURPLE, "4", "REVIEW",         "Operation (operators)<br>Phase Details (eng.)"),
+        ]
+        _flow_html = ""
+        for idx, (color, num, title, desc) in enumerate(_flow_steps):
+            if idx > 0:
+                _flow_html += f'<div style="{_ARROW}">&#10141;</div>'
+            _r, _g, _b = int(color[1:3],16), int(color[3:5],16), int(color[5:7],16)
+            _flow_html += (
+                f'<div style="flex:1;min-width:150px;max-width:220px;text-align:center;">'
+                f'<div style="background:rgba({_r},{_g},{_b},0.10);border:2px solid {color};border-radius:10px;padding:18px 12px 14px 12px;">'
+                f'<div style="font-family:\'JetBrains Mono\',monospace;font-size:20px;font-weight:800;color:{color};line-height:1;">{num}</div>'
+                f'<div style="font-family:\'JetBrains Mono\',monospace;font-size:10px;font-weight:700;color:{TEXT_PRI};letter-spacing:0.06em;margin-top:8px;">{title}</div>'
+                f'<div style="color:{TEXT_DIM};font-size:10px;margin-top:6px;line-height:1.5;">{desc}</div>'
+                f'</div></div>'
+            )
+
+        st.markdown(
+            f'<div style="{_CARD}margin-bottom:20px;">'
+            f'<div style="{_SEC_TITLE}">How to Use — Workflow</div>'
+            f'<div style="display:flex;align-items:center;gap:0;margin:12px 0 4px 0;flex-wrap:wrap;justify-content:center;">'
+            f'{_flow_html}'
+            f'</div></div>',
+            unsafe_allow_html=True,
+        )
+
+        # ──────────────── Algorithm footer ──────────────────
+        st.markdown(f"""
+<div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+  <span style="font-family:'JetBrains Mono',monospace;color:{TEXT_DIM};font-size:9px;letter-spacing:0.08em;">
+    ALGORITHM v9 · EXACT SEARCH · PRE-COMPUTED TEMPLATES + BRANCH & BOUND + MEMOIZATION</span>
+  <span style="font-family:'JetBrains Mono',monospace;color:{TEXT_DIM};font-size:9px;letter-spacing:0.08em;">
+    MVP PROTOTYPE · K-VALUES PENDING CALIBRATION</span>
+</div>
+""", unsafe_allow_html=True)
 
     # ═══════════════════════════════════════════════════════════
     # TAB 1: WASTE STREAMS — edit real WasteStream objects
@@ -438,7 +521,7 @@ code/
         st.markdown(f'<div class="mono dim" style="font-size:11px;margin-bottom:12px;">{len(streams)} STREAMS · Total: {sum(s.quantity_L for s in streams):,.0f} L</div>', unsafe_allow_html=True)
 
         for i, s in enumerate(streams):
-            with st.expander(f"🔶 {s.stream_id} — {s.quantity_L:.0f} L, BTU={s.btu_per_lb:.0f}, pH={s.pH:.1f}", expanded=(i==0)):
+            with st.expander(f"🔶 {s.stream_id}", expanded=(i==0)):
                 c1, c2, c3, c4 = st.columns(4)
                 with c1:
                     s.stream_id = st.text_input("stream_id", s.stream_id, key=f"sid_{i}")
@@ -451,7 +534,7 @@ code/
                     s.solid_pct = st.number_input("solid_pct", 0.0, 100.0, s.solid_pct, 0.5, key=f"sol_{i}")
                 with c4:
                     s.salt_ppm = st.number_input("salt_ppm", 0.0, 50000.0, float(s.salt_ppm), 100.0, key=f"salt_{i}")
-                    s.moisture_pct = st.number_input("moisture_pct «A9»", 0.0, 100.0, s.moisture_pct, 1.0, key=f"moi_{i}")
+                    s.moisture_pct = st.number_input("moisture_pct", 0.0, 100.0, s.moisture_pct, 1.0, key=f"moi_{i}")
                 if st.button(f"🗑 Remove {s.stream_id}", key=f"rm_{i}"):
                     st.session_state.streams.pop(i); st.rerun()
 
@@ -511,8 +594,8 @@ code/
             if res is None:
                 st.markdown(f"""<div style="text-align:center;padding:80px 0;color:{TEXT_DIM};">
                     <div style="font-size:48px;margin-bottom:12px;">⚡</div>
-                    <div class="mono" style="font-size:14px;">No results yet</div>
-                    <div class="mono dim" style="font-size:11px;margin-top:6px;">Press RUN OPTIMIZATION to call calc_baseline() + build_optimized_schedule()</div>
+                    <div class="mono" style="font-size:13px;letter-spacing:0.08em;text-transform:uppercase;">AWAITING INPUT</div>
+                    <div class="mono dim" style="font-size:10px;margin-top:6px;letter-spacing:0.04em;">Press RUN OPTIMIZATION to execute calc_baseline() + build_optimized_schedule()</div>
                 </div>""", unsafe_allow_html=True)
             else:
                 bl = res["baseline"]
@@ -531,11 +614,11 @@ code/
 
                     # ── Metrics ──
                     m1, m2, m3, m4, m5 = st.columns(5)
-                    with m1: st.metric("BASELINE", f"${bl.total_cost:,.0f}")
-                    with m2: st.metric("OPTIMIZED", f"${opt.total_cost:,.0f}", delta=f"-${sav:,.0f}", delta_color="normal")
-                    with m3: st.metric("SAVINGS", f"{sp:.1f}%")
-                    with m4: st.metric("RUNTIME", f"{opt.total_runtime_hr:.1f} hr", delta=f"vs {bl.total_runtime_hr:.1f} hr")
-                    with m5: st.metric("PHASES", f"{len(opt.phases)}", delta=f"{elapsed:.2f}s")
+                    with m1: st.metric("BASELINE COST", f"${bl.total_cost:,.0f}")
+                    with m2: st.metric("OPTIMIZED COST", f"${opt.total_cost:,.0f}", delta=f"-${sav:,.0f}", delta_color="inverse")
+                    with m3: st.metric("COST SAVINGS", f"{sp:.1f}%")
+                    with m4: st.metric("TOTAL RUNTIME", f"{opt.total_runtime_hr:.1f} hr", delta=f"-{bl.total_runtime_hr - opt.total_runtime_hr:.1f} hr", delta_color="inverse")
+                    with m5: st.metric("FEED PHASES", f"{len(opt.phases)}")
 
                     st.markdown("")
 
@@ -549,16 +632,6 @@ code/
                         tf = _phase_timeline(opt)
                         if tf: st.plotly_chart(tf, use_container_width=True, config={"displayModeBar": False})
 
-                    # ── Gauges: first phase ──
-                    st.markdown("")
-                    p1 = opt.phases[0]
-                    btu_eff = p1.blend_props.btu_per_lb / (1 + p1.r_water) if p1.r_water > 0 else p1.blend_props.btu_per_lb
-                    g1, g2, g3, g4 = st.columns(4)
-                    with g1: st.plotly_chart(_gauge(p1.W, "P1 Throughput (W)", cfg.F_total, ACCENT, " L/min"), use_container_width=True, config={"displayModeBar": False})
-                    with g2: st.plotly_chart(_gauge(btu_eff, "P1 BTU_eff", cfg.BTU_target * 1.5, RED), use_container_width=True, config={"displayModeBar": False})
-                    with g3: st.plotly_chart(_gauge(p1.r_water, "P1 r_water", max(3.0, p1.r_water * 1.5), BLUE), use_container_width=True, config={"displayModeBar": False})
-                    with g4: st.plotly_chart(_gauge(p1.r_diesel, "P1 r_diesel", max(0.2, p1.r_diesel * 2), GREEN), use_container_width=True, config={"displayModeBar": False})
-
                     # ── Search stats ──
                     st.markdown(f"""<div class="mono dim" style="font-size:10px;margin-top:16px;">
                         SEARCH: evaluated={stats['evaluated']:,} ·
@@ -569,7 +642,80 @@ code/
                     </div>""", unsafe_allow_html=True)
 
     # ═══════════════════════════════════════════════════════════
-    # TAB 3: PHASE DETAILS — full PhaseResult breakdowns
+    # TAB 3: OPERATION — Operator feed plan instructions
+    # ═══════════════════════════════════════════════════════════
+    with tab_ops:
+        res = st.session_state.result
+        if res is None or res.get("optimized") is None:
+            st.info("Run optimization first.")
+        else:
+            opt = res["optimized"]
+
+            # ── Styles ──
+            _OP_LBL = f"color:{ACCENT};font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;"
+            _OP_HDR = f"background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:14px;margin-bottom:2px;"
+            _OP_ROW = f"background:{PANEL_BG};border-left:1px solid {BORDER};border-right:1px solid {BORDER};border-bottom:1px solid {BORDER};padding:8px 14px;"
+            _OP_TH = f"color:{ACCENT};font-size:9px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:4px 8px;"
+            _OP_TD = f"color:{TEXT_PRI};font-size:12px;font-weight:500;padding:4px 8px;font-family:JetBrains Mono,monospace;"
+            _OP_NOTE = f"color:{TEXT_DIM};font-size:9px;font-style:italic;"
+
+            st.markdown(f'<div class="mono" style="font-size:12px;color:{ACCENT};margin-bottom:4px;">◆ FEED PLAN — OPERATOR INSTRUCTIONS</div>', unsafe_allow_html=True)
+            st.markdown(f'<div style="{_OP_NOTE}">Set pump rates and timers for each phase in sequence. All flow rates in L/min.</div>', unsafe_allow_html=True)
+            st.markdown("")
+
+            for i, ph in enumerate(opt.phases):
+                color = STREAM_COLORS[i % len(STREAM_COLORS)]
+                ratio_sum = sum(ph.streams.values())
+                rt_h = int(ph.runtime_min // 60)
+                rt_m = int(ph.runtime_min % 60)
+                runtime_fmt = f"{rt_h}h {rt_m}m" if rt_h > 0 else f"{rt_m} min"
+
+                # ── Phase header ──
+                st.markdown(f'<div style="{_OP_HDR}border-left:3px solid {color};display:flex;justify-content:space-between;align-items:center;"><span class="mono" style="color:{color};font-size:14px;font-weight:700;">PHASE {i+1}</span><span class="mono" style="color:{TEXT_PRI};font-size:12px;">⏱ {runtime_fmt} · {ph.Q_phase:.0f} L · <span style="color:{ACCENT};font-weight:700;">${ph.cost_total:,.2f}</span></span></div>', unsafe_allow_html=True)
+
+                # ── ① WASTE FEED table ──
+                st.markdown(f'<div style="{_OP_ROW}"><span style="{_OP_LBL}">① WASTE FEED</span></div>', unsafe_allow_html=True)
+                # Table header
+                waste_hdr = f'<div style="{_OP_ROW}display:flex;border-bottom:1px solid {BORDER};"><span style="{_OP_TH}flex:2;">Stream</span><span style="{_OP_TH}flex:1;text-align:right;">Ratio</span><span style="{_OP_TH}flex:1.5;text-align:right;">Feed Rate</span><span style="{_OP_TH}flex:1.5;text-align:right;">Volume</span></div>'
+                st.markdown(waste_hdr, unsafe_allow_html=True)
+                # Table rows
+                for sid, r in ph.streams.items():
+                    rate = r / ratio_sum * ph.W
+                    vol = r / ratio_sum * ph.Q_phase
+                    st.markdown(f'<div style="{_OP_ROW}display:flex;"><span style="{_OP_TD}flex:2;color:{ACCENT};font-weight:600;">{sid}</span><span style="{_OP_TD}flex:1;text-align:right;">×{r}</span><span style="{_OP_TD}flex:1.5;text-align:right;color:{GREEN};font-weight:600;">{rate:.2f} L/min</span><span style="{_OP_TD}flex:1.5;text-align:right;">{vol:.1f} L</span></div>', unsafe_allow_html=True)
+                # Waste subtotal
+                st.markdown(f'<div style="{_OP_ROW}display:flex;border-top:1px solid {BORDER};"><span style="{_OP_TD}flex:2;color:{TEXT_DIM};font-weight:600;">Total Waste</span><span style="{_OP_TD}flex:1;"></span><span style="{_OP_TD}flex:1.5;text-align:right;color:{TEXT_PRI};font-weight:700;">{ph.W:.2f} L/min</span><span style="{_OP_TD}flex:1.5;text-align:right;font-weight:600;">{ph.Q_phase:.1f} L</span></div>', unsafe_allow_html=True)
+
+                # ── ② ADDITIVES table ──
+                st.markdown(f'<div style="{_OP_ROW}margin-top:4px;"><span style="{_OP_LBL}">② ADDITIVES</span></div>', unsafe_allow_html=True)
+                add_hdr = f'<div style="{_OP_ROW}display:flex;border-bottom:1px solid {BORDER};"><span style="{_OP_TH}flex:2;">Additive</span><span style="{_OP_TH}flex:1;text-align:right;">Ratio</span><span style="{_OP_TH}flex:1.5;text-align:right;">Pump Rate</span></div>'
+                st.markdown(add_hdr, unsafe_allow_html=True)
+                additives = [
+                    ("DI Water", ph.r_water, ph.r_water * ph.W, BLUE),
+                    ("Diesel", ph.r_diesel, ph.r_diesel * ph.W, RED),
+                    ("NaOH (35%)", ph.r_naoh, ph.r_naoh * ph.W, PURPLE),
+                ]
+                for name, ratio, flow, clr in additives:
+                    st.markdown(f'<div style="{_OP_ROW}display:flex;"><span style="{_OP_TD}flex:2;color:{clr};font-weight:600;">{name}</span><span style="{_OP_TD}flex:1;text-align:right;">{ratio:.4f}</span><span style="{_OP_TD}flex:1.5;text-align:right;color:{GREEN};font-weight:600;">{flow:.4f} L/min</span></div>', unsafe_allow_html=True)
+                # Total flow
+                total_flow = ph.W * (1 + ph.r_ext)
+                st.markdown(f'<div style="{_OP_ROW}display:flex;border-top:1px solid {BORDER};"><span style="{_OP_TD}flex:2;color:{TEXT_DIM};font-weight:600;">Total Flow (waste + additives)</span><span style="{_OP_TD}flex:1;"></span><span style="{_OP_TD}flex:1.5;text-align:right;color:{ACCENT};font-weight:700;">{total_flow:.2f} L/min</span></div>', unsafe_allow_html=True)
+
+                st.markdown("")
+
+            # ── Summary ──
+            st.markdown("---")
+            total_rt = opt.total_runtime_min
+            th = int(total_rt // 60)
+            tm = int(total_rt % 60)
+            total_vol = sum(ph.Q_phase for ph in opt.phases)
+            s1, s2, s3 = st.columns(3)
+            with s1: st.metric("TOTAL RUNTIME", f"{th}h {tm}m")
+            with s2: st.metric("TOTAL VOLUME", f"{total_vol:,.0f} L")
+            with s3: st.metric("TOTAL COST", f"${opt.total_cost:,.2f}")
+
+    # ═══════════════════════════════════════════════════════════
+    # TAB 4: PHASE DETAILS — full PhaseResult breakdowns
     # ═══════════════════════════════════════════════════════════
     with tab_phases:
         res = st.session_state.result
@@ -579,29 +725,34 @@ code/
             bl = res["baseline"]
             opt = res["optimized"]
 
+            # ── Helper: labeled section row ──
+            _LBL = f"color:{ACCENT};font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;min-width:190px;display:inline-block;margin-right:12px;"
+            _VAL = f"color:{TEXT_PRI};font-size:11px;"
+            _NOTE = f"color:{TEXT_DIM};font-size:9px;font-style:italic;margin-top:2px;"
+
             # ── Baseline ──
-            st.markdown(f'<div class="mono" style="font-size:12px;color:{RED};margin-bottom:12px;">◆ BASELINE — SOLO PROCESSING (calc_baseline)</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="mono" style="font-size:12px;color:{RED};margin-bottom:12px;">◆ BASELINE — INDIVIDUAL PROCESSING</div>', unsafe_allow_html=True)
+            st.markdown(f'<div style="{_NOTE}">Each waste stream processed independently without blending — serves as cost benchmark.</div>', unsafe_allow_html=True)
+            st.markdown("")
             for ph in bl.phases:
                 sid = list(ph.streams.keys())[0]
-                st.markdown(f"""<div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:12px;margin-bottom:8px;">
-                    <div class="mono" style="color:{TEXT_PRI};font-size:12px;font-weight:600;">{sid} — ${ph.cost_total:,.2f}</div>
-                    <div class="mono dim" style="font-size:10px;margin-top:4px;">
-                        W={ph.W:.2f} L/min · Runtime={ph.runtime_min:.1f}min · r_ext={ph.r_ext:.3f}<br>
-                        r_water={ph.r_water:.4f} · r_diesel={ph.r_diesel:.4f} · r_naoh={ph.r_naoh:.6f}<br>
-                        diesel=${ph.cost_diesel:.2f} · NaOH=${ph.cost_naoh:.2f} · water=${ph.cost_water:.2f} ·
-                        electricity=${ph.cost_electricity:.2f} · labor=${ph.cost_labor:.2f}
-                    </div></div>""", unsafe_allow_html=True)
+                st.markdown(f'<div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:6px;padding:14px;margin-bottom:8px;"><span class="mono" style="color:{TEXT_PRI};font-size:13px;font-weight:700;">{sid}</span></div>', unsafe_allow_html=True)
+                st.markdown(f'<div style="background:{PANEL_BG};border-left:1px solid {BORDER};border-right:1px solid {BORDER};padding:4px 14px;"><span class="mono" style="{_LBL}">THROUGHPUT</span> <span class="mono" style="{_VAL}">{ph.W:.2f} L/min</span></div>', unsafe_allow_html=True)
+                st.markdown(f'<div style="background:{PANEL_BG};border-left:1px solid {BORDER};border-right:1px solid {BORDER};padding:4px 14px;"><span class="mono" style="{_LBL}">RUNTIME</span> <span class="mono" style="{_VAL}">{ph.runtime_min:.1f} min</span></div>', unsafe_allow_html=True)
+                st.markdown(f'<div style="background:{PANEL_BG};border:1px solid {BORDER};border-radius:0 0 6px 6px;padding:4px 14px 10px;margin-bottom:8px;"><span class="mono" style="{_LBL}">COST</span> <span class="mono" style="color:{ACCENT};font-size:12px;font-weight:700;">${ph.cost_total:,.2f}</span> <span class="mono" style="color:{TEXT_DIM};font-size:10px;"> — Diesel ${ph.cost_diesel:.2f} · NaOH ${ph.cost_naoh:.2f} · Water ${ph.cost_water:.2f} · Elec ${ph.cost_electricity:.2f} · Labor ${ph.cost_labor:.2f}</span></div>', unsafe_allow_html=True)
 
             st.markdown("---")
 
             # ── Optimized ──
-            st.markdown(f'<div class="mono" style="font-size:12px;color:{GREEN};margin-bottom:12px;">◆ OPTIMIZED — MULTI-PHASE FEED PLAN (build_optimized_schedule)</div>', unsafe_allow_html=True)
+            st.markdown(f'<div class="mono" style="font-size:12px;color:{GREEN};margin-bottom:12px;">◆ OPTIMIZED — MULTI-PHASE BLENDED FEED PLAN</div>', unsafe_allow_html=True)
+            st.markdown(f'<div style="color:{TEXT_DIM};font-size:9px;font-style:italic;">Waste streams blended in optimal ratios across multiple phases to minimize total operating cost.</div>', unsafe_allow_html=True)
+            st.markdown("")
             for i, ph in enumerate(opt.phases):
-                ratio_str = " : ".join(f"{sid}={r}" for sid, r in ph.streams.items())
+                ratio_str = " + ".join(f"{sid} ×{r}" for sid, r in ph.streams.items())
                 color = STREAM_COLORS[i % len(STREAM_COLORS)]
                 b = ph.blend_props
 
-                # Safety checks (same logic as reporter.py → report_safety)
+                # Safety checks
                 eff_solid = b.solid_pct / (1 + ph.r_water) if ph.r_water > 0 else b.solid_pct
                 eff_salt = b.salt_ppm / (1 + ph.r_water) if ph.r_water > 0 else b.salt_ppm
                 btu_eff = b.btu_per_lb / (1 + ph.r_water)
@@ -610,76 +761,53 @@ code/
                 w_ok = ph.W >= cfg.W_min
                 all_ok = solid_ok and salt_ok and w_ok
 
-                st.markdown(f"""<div style="background:{PANEL_BG};border:1px solid {color}44;border-left:3px solid {color};border-radius:6px;padding:14px;margin-bottom:10px;">
-                    <div style="display:flex;justify-content:space-between;align-items:center;">
-                        <div class="mono" style="color:{color};font-size:13px;font-weight:600;">Phase {i+1}: [{ratio_str}]</div>
-                        <div class="mono" style="color:{ACCENT};font-size:14px;font-weight:700;">${ph.cost_total:,.2f}</div>
-                    </div>
-                    <div class="mono dim" style="font-size:10px;margin-top:6px;">
-                        Blend: BTU={b.btu_per_lb:.0f} · pH={b.pH:.1f} · F={b.f_ppm:.0f}ppm · Solid={b.solid_pct:.1f}% · Salt={b.salt_ppm:.0f}ppm
-                    </div>
-                    <div class="mono dim" style="font-size:10px;margin-top:4px;">
-                        W={ph.W:.2f} L/min · Runtime={ph.runtime_min:.1f}min · Q={ph.Q_phase:.1f}L ·
-                        r_water={ph.r_water:.4f} · r_diesel={ph.r_diesel:.4f} · r_naoh={ph.r_naoh:.6f}
-                    </div>
-                    <div class="mono" style="font-size:10px;margin-top:4px;">
-                        diesel=${ph.cost_diesel:.2f} · NaOH=${ph.cost_naoh:.2f} · water=${ph.cost_water:.2f} ·
-                        electricity=${ph.cost_electricity:.2f} · labor=${ph.cost_labor:.2f}
-                    </div>
-                    <div class="mono" style="font-size:10px;margin-top:6px;">
-                        <span class="status-{'ok' if all_ok else 'warn'}"></span>
-                        BTU_eff={btu_eff:.0f} · Solid_eff={eff_solid:.1f}% {'✓' if solid_ok else '⚠ OVER'} ·
-                        Salt_eff={eff_salt:.0f} {'✓' if salt_ok else '⚠ OVER'} ·
-                        W={ph.W:.2f} {'✓' if w_ok else '⚠ LOW'}
-                    </div>
-                </div>""", unsafe_allow_html=True)
+                # ── Per-stream feed rates ──
+                ratio_sum = sum(ph.streams.values())
+                feed_details = " + ".join(
+                    f"{sid} ×{r} ({r/ratio_sum*ph.W:.2f} L/min)"
+                    for sid, r in ph.streams.items()
+                )
 
-            # Radar for P1
-            cr1, cr2 = st.columns(2)
-            with cr1:
-                st.markdown(f'<div class="mono" style="font-size:11px;color:{ACCENT};margin-bottom:8px;">◆ PHASE 1 BLEND PROPERTIES</div>', unsafe_allow_html=True)
-                st.plotly_chart(_blend_radar(opt.phases[0].blend_props, cfg), use_container_width=True, config={"displayModeBar": False})
+                # ── Additive actual flow rates ──
+                water_flow = ph.r_water * ph.W
+                diesel_flow = ph.r_diesel * ph.W
+                naoh_flow = ph.r_naoh * ph.W
 
-    # ═══════════════════════════════════════════════════════════
-    # TAB 4: SENSITIVITY — uses real calc_baseline
-    # ═══════════════════════════════════════════════════════════
-    with tab_sens:
-        if not streams:
-            st.warning("Add at least 1 stream.")
-        else:
-            st.markdown(f'<div class="mono" style="font-size:11px;color:{ACCENT};margin-bottom:4px;">◆ PARAMETER SENSITIVITY (BASELINE COST)</div>', unsafe_allow_html=True)
-            st.markdown(f'<div class="dim" style="font-size:11px;margin-bottom:20px;">Red diamond = current value. Shows how baseline cost responds to parameter changes.</div>', unsafe_allow_html=True)
-
-            s1, s2 = st.columns(2)
-            with s1:
-                st.markdown(f'<div class="mono dim" style="font-size:10px;">F_TOTAL (L/min)</div>', unsafe_allow_html=True)
-                fig = _sensitivity(streams, cfg, "F_total", "F_total (L/min)", [x/2 for x in range(4,40)])
-                if fig: st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
-
-                st.markdown(f'<div class="mono dim" style="font-size:10px;">BTU_TARGET</div>', unsafe_allow_html=True)
-                fig = _sensitivity(streams, cfg, "BTU_target", "BTU_target", list(range(1000,5000,100)))
-                if fig: st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
-
-            with s2:
-                st.markdown(f'<div class="mono dim" style="font-size:10px;">η (THERMAL EFFICIENCY)</div>', unsafe_allow_html=True)
-                fig = _sensitivity(streams, cfg, "eta", "η", [x/100 for x in range(50,100,2)])
-                if fig: st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
-
-                st.markdown(f'<div class="mono dim" style="font-size:10px;">SOLID_MAX_PCT (%)</div>', unsafe_allow_html=True)
-                fig = _sensitivity(streams, cfg, "solid_max_pct", "solid_max_pct (%)", [x/2 for x in range(4,60)])
-                if fig: st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
-
-            st.markdown(f'<div class="mono dim" style="font-size:10px;">DIESEL COST ($/L)</div>', unsafe_allow_html=True)
-            fig = _sensitivity(streams, cfg, "cost_diesel_per_L", "cost_diesel_per_L ($/L)", [x/10 for x in range(5,40)])
-            if fig: st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False})
+                # ── Build rows as list of (label, value, note) ──
+                _s = f"status-{'ok' if all_ok else 'warn'}"
+                rows = [
+                    ("FEED RECIPE", feed_details,
+                     f"Blending ratio × (individual feed rate) · Total waste feed: {ph.W:.2f} L/min"),
+                    ("BLEND PROPERTIES",
+                     f"Heat Value: {b.btu_per_lb:.0f} BTU/lb · pH: {b.pH:.1f} · Fluoride: {b.f_ppm:.0f} ppm · Solids: {b.solid_pct:.1f}% · Salt: {b.salt_ppm:.0f} ppm",
+                     "Combined properties of the blended mixture before entering the reactor"),
+                    ("OPERATING CONDITIONS",
+                     f"Feed Rate: {ph.W:.2f} L/min · Runtime: {ph.runtime_min:.1f} min · Volume Processed: {ph.Q_phase:.1f} L",
+                     "Reactor throughput, processing time, and total volume for this phase"),
+                    ("ADDITIVE RATIOS",
+                     f"DI Water: {ph.r_water:.4f} ({water_flow:.3f} L/min) · Diesel: {ph.r_diesel:.4f} ({diesel_flow:.4f} L/min) · NaOH: {ph.r_naoh:.6f} ({naoh_flow:.5f} L/min)",
+                     "Ratio = volume of additive per unit waste feed · (actual flow rate at current feed rate)"),
+                    ("COST BREAKDOWN",
+                     f"Diesel: ${ph.cost_diesel:.2f} · NaOH: ${ph.cost_naoh:.2f} · DI Water: ${ph.cost_water:.2f} · Electricity: ${ph.cost_electricity:.2f} · Labor: ${ph.cost_labor:.2f}",
+                     "Itemized operating cost for each consumable and resource"),
+                    ("SAFETY CHECK",
+                     f'<span class="{_s}"></span> Eff. Heat Value: {btu_eff:.0f} BTU/lb · Eff. Solids: {eff_solid:.1f}% {"✓" if solid_ok else "⚠ EXCEEDS LIMIT"} · Eff. Salt: {eff_salt:.0f} ppm {"✓" if salt_ok else "⚠ EXCEEDS LIMIT"} · Feed Rate: {ph.W:.2f} L/min {"✓" if w_ok else "⚠ BELOW MINIMUM"}',
+                     "Effective values after dilution — verifies reactor safety limits are met"),
+                ]
+                # Header
+                st.markdown(f'<div style="background:{PANEL_BG};border:1px solid {BORDER};border-left:3px solid {color};border-radius:6px;padding:14px 14px 4px;margin-bottom:2px;display:flex;justify-content:space-between;align-items:center;"><span class="mono" style="color:{color};font-size:13px;font-weight:700;">Phase {i+1}</span><span class="mono" style="color:{ACCENT};font-size:15px;font-weight:800;">${ph.cost_total:,.2f}</span></div>', unsafe_allow_html=True)
+                # Each labeled row
+                for lbl, val, note in rows:
+                    st.markdown(f'<div style="background:{PANEL_BG};border-left:1px solid {BORDER};border-right:1px solid {BORDER};padding:6px 14px;border-bottom:1px solid {BORDER};"><span class="mono" style="{_LBL}">{lbl}</span><span class="mono" style="{_VAL}">{val}</span><br><span style="{_NOTE}">{note}</span></div>', unsafe_allow_html=True)
+                st.markdown("")
 
     # ── Footer ──
     st.markdown("---")
     st.markdown(f"""<div style="display:flex;justify-content:space-between;padding:4px 0;">
-        <span class="mono dim" style="font-size:9px;">
-            AXNANO SMART-FEED v9 · LIVE ALGORITHM · «A1»–«A9» ASSUMPTIONS ACTIVE</span>
-        <span class="mono dim" style="font-size:9px;">
-            smart_feed_v9 package · Streamlit Dashboard</span>
+        <span class="mono dim" style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;">
+            AXNANO SMART-FEED v9 · LIVE ALGORITHM</span>
+        <span class="mono dim" style="font-size:9px;letter-spacing:0.1em;">
+            smart_feed_v9 · INDUSTRIAL CONTROL PANEL</span>
     </div>""", unsafe_allow_html=True)
 
 

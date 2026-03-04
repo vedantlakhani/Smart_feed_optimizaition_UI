@@ -18,6 +18,9 @@ python -m smart_feed_v9 --input my_waste.json
 # Adjust parameters
 python -m smart_feed_v9 --input my_waste.json --F_total 10.5 --eta 0.85
 
+# Start Dashboard
+streamlit run smartfeed_dashboard.py
+
 # Run tests
 python -m pytest tests/ -v
 ```

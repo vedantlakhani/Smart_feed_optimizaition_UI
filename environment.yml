@@ -1,0 +1,12 @@
+name: axnano-smartfeed
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.13
+  - pip
+  - pip:
+    - streamlit>=1.40
+    - plotly>=5.20
+    - pandas>=2.0
+    - pytest>=8.0
