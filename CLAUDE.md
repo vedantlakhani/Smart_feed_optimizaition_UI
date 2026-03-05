@@ -33,6 +33,7 @@ Input files go in the `input/` directory; reports are auto-saved to the `report/
 code/                        Project root (VSCode workspace)
 ├── CLAUDE.md                Project documentation
 ├── pyproject.toml           pytest configuration
+├── smartfeed_dashboard.py   Streamlit dashboard (820 lines, industrial dark theme)
 ├── input/                   Input files directory
 │   ├── example_input.json   Default input (3 streams: Resin + AFFF + Caustic)
 │   ├── test_4streams.json   4-stream test
@@ -62,6 +63,39 @@ code/                        Project root (VSCode workspace)
 4. Recursive search: enumerate all feasible multi-phase feed plans (templates × inventory → cost-sorted → B&B pruning → recurse)
 5. Select the globally lowest-cost schedule
 6. Output: optimal plan + baseline comparison + safety report, printed to terminal + saved to file
+
+## Dashboard (smartfeed_dashboard.py)
+
+Streamlit + Plotly interactive dashboard with industrial dark theme (steel + amber). Dependencies: `streamlit`, `plotly`, `pandas`.
+
+### 5 Tabs
+
+| Tab | Purpose |
+|-----|---------|
+| **INTRODUCTION** | Algorithm overview, "What is Smart-Feed?" explainer, how-it-works flow diagram |
+| **WASTE STREAMS** | Input table of all waste streams with properties (BTU, pH, F ppm, Solid%, Salt ppm) |
+| **OPTIMIZATION** | Run optimization, show baseline vs optimized cost comparison, Plotly charts (cost breakdown, phase timeline, Sankey diagram) |
+| **OPERATION** | Operator work-instruction cards per phase: waste feed rates (L/min), additive pump rates (diesel/NaOH/water), runtime, cost |
+| **PHASE DETAILS** | Technical deep-dive per phase: blend properties, Gatekeeper rates, itemized costs, safety check |
+
+### Theme Constants
+
+- Colors: `BG=#12151A`, `PANEL_BG=#1A1E26`, `BORDER=#2A3040`, `ACCENT=#F59E0B` (amber), `BLUE=#5E81AC`, `GREEN=#4CAF50`, `RED=#E74C3C`
+- Fonts: JetBrains Mono (data/labels), Inter (body text)
+- Stream colors cycle: amber → blue → green → red → purple
+
+### Safety Check (Phase Details)
+
+Displays effective values **after ALL additives** (water + diesel + NaOH):
+- Solid/Salt dilution: `value / (1 + r_water + r_diesel + r_naoh)` — all external volume dilutes
+- BTU effective: `BTU_blend / (1 + r_water) + r_diesel × BTU_diesel × η` — water dilutes, diesel adds heat
+- Throughput: `W ≥ W_min` check
+
+### Sidebar
+
+- JSON input file selector (from `input/` directory)
+- SystemConfig parameter overrides (F_total, BTU_target, solid_max, salt_max, pH_max, eta, P_system)
+- Unit cost overrides (diesel, NaOH, water, electricity, labor)
 
 ## Key Design Decisions
 
