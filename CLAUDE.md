@@ -13,10 +13,10 @@ MVP prototype, aiming to validate product viability with exact search optimizati
 python -m smart_feed_v9
 
 # Specify a file in the input/ directory
-python -m smart_feed_v9 --input my_waste.json
+python -m smart_feed_v9 --input example_input.json
 
 # Adjust parameters
-python -m smart_feed_v9 --input my_waste.json --F_total 10.5 --eta 0.85
+python -m smart_feed_v9 --input example_input.json --F_total 10.5 --eta 0.85
 
 # Start Dashboard
 streamlit run smartfeed_dashboard.py
