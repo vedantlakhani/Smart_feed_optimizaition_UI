@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+env/
+
+# Reports (auto-generated)
+report/
+
+# Node / Next.js
+dashboard/node_modules/
+dashboard/.next/
+dashboard/.turbo/
+dashboard/out/
+
+# Claude Code internal
+.claude/worktrees/
+
+# macOS
+.DS_Store

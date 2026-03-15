@@ -1,4 +1,6 @@
-# CLAUDE.md — AxNano Smart-Feed Algorithm v9
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Overview
 
@@ -6,54 +8,117 @@ Multi-phase feed optimization algorithm for SCWO (Supercritical Water Oxidation)
 
 MVP prototype, aiming to validate product viability with exact search optimization for ≤5 waste streams.
 
-## Usage
+## Commands
+
+### Python Algorithm (requires `axnano-smartfeed` conda env — Python 3.13)
 
 ```bash
-# Use default input (input/example_input.json)
+# Activate environment
+~/miniconda3/bin/conda activate axnano-smartfeed
+# Or use the full path: ~/miniconda3/envs/axnano-smartfeed/bin/python
+
+# Run CLI
 python -m smart_feed_v9
-
-# Specify a file in the input/ directory
 python -m smart_feed_v9 --input example_input.json
-
-# Adjust parameters
 python -m smart_feed_v9 --input example_input.json --F_total 10.5 --eta 0.85
-
-# Start Dashboard
-streamlit run smartfeed_dashboard.py
 
 # Run tests
 python -m pytest tests/ -v
+
+# Run a single test
+python -m pytest tests/test_core.py::test_name -v
+
+# Run the legacy Streamlit dashboard (kept for reference)
+streamlit run smartfeed_dashboard.py
 ```
 
-Input files go in the `input/` directory; reports are auto-saved to the `report/` directory.
+### Next.js Dashboard (`dashboard/`)
+
+```bash
+cd dashboard
+npm run dev       # Dev server → http://localhost:3000
+npm run build     # Production build (TypeScript check included)
+npm run lint      # ESLint
+```
+
+### Python → Next.js bridge (used by API route)
+
+```bash
+# Test the runner directly
+cat input/example_input.json | ~/miniconda3/envs/axnano-smartfeed/bin/python run_optimization.py
+```
 
 ## Project Structure
 
 ```
-code/                        Project root (VSCode workspace)
-├── CLAUDE.md                Project documentation
-├── pyproject.toml           pytest configuration
-├── smartfeed_dashboard.py   Streamlit dashboard (820 lines, industrial dark theme)
-├── input/                   Input files directory
-│   ├── example_input.json   Default input (3 streams: Resin + AFFF + Caustic)
-│   ├── test_4streams.json   4-stream test
-│   └── test_5streams.json   5-stream test
-├── report/                  Report output directory (auto-generated)
-│   └── report_YYYYMMDD_HHMMSS.txt
-├── smart_feed_v9/           Algorithm package
-│   ├── models.py            Data structures (WasteStream user-required, SystemConfig tunable with defaults)
-│   ├── blending.py          Blend property calculations (linear blending + pH via [H⁺] concentration)
-│   ├── gatekeeper.py        Core engine: r_water → r_diesel → r_naoh → W → cost
-│   ├── baseline.py          Baseline: solo processing cost per stream
-│   ├── ratios.py            Ratio enumeration: GCD=1, sum≤11
-│   ├── search.py            Recursive search: pre-computed templates + B&B + Memo + sorted exploration
-│   ├── reporter.py          Formatted report output (6 sections)
-│   ├── __init__.py          Public API + input validation
-│   └── __main__.py          CLI entry + JSON loading + parameter overrides + report saving
-└── tests/                   Test suite (23 tests)
-    ├── conftest.py          pytest path configuration
-    └── test_core.py         blending / gatekeeper / search core tests
+Smart_feed_optimizaition/          Project root
+├── CLAUDE.md
+├── pyproject.toml                 pytest configuration
+├── environment.yml                conda env: axnano-smartfeed (Python 3.13)
+├── run_optimization.py            JSON stdin → optimization → JSON stdout (Next.js bridge)
+├── smartfeed_dashboard.py         Legacy Streamlit dashboard (820 lines, kept for reference)
+├── input/                         JSON input files (used by both CLI and Next.js)
+├── report/                        Auto-generated reports (CLI only)
+├── smart_feed_v9/                 Core Python algorithm package
+│   ├── models.py                  WasteStream, SystemConfig, BlendProperties, PhaseResult, Schedule
+│   ├── blending.py                Blend property calculations
+│   ├── gatekeeper.py              Core engine: r_water → r_diesel → r_naoh → W → cost
+│   ├── baseline.py                Solo processing cost per stream
+│   ├── ratios.py                  Ratio enumeration: GCD=1, sum≤11
+│   ├── search.py                  Recursive search with B&B + memoization
+│   ├── reporter.py                Formatted report output
+│   ├── __init__.py                Public API: run_optimization(), WasteStream, SystemConfig
+│   └── __main__.py                CLI entry point
+├── tests/
+│   ├── conftest.py                pytest path configuration
+│   └── test_core.py               23 tests: blending / gatekeeper / search
+└── dashboard/                     Next.js 16 + shadcn/ui frontend
+    └── src/
+        ├── app/
+        │   ├── page.tsx           Main page — all state, 5-tab shell
+        │   ├── layout.tsx
+        │   ├── globals.css        Premium Light theme (slate-50 bg, Ax-Cyan #06B6D4, Ax-Orange #FF8C00)
+        │   └── api/
+        │       ├── optimize/      POST: spawns run_optimization.py, returns OptimizationResult JSON
+        │       ├── input-files/   GET: lists input/*.json
+        │       └── load-input/    GET ?file=: reads an input JSON file
+        ├── components/
+        │   ├── ui/                shadcn/ui components (do not edit manually — regenerate via npx shadcn)
+        │   ├── magicui/           Magic UI components (number-ticker, shimmer-button, border-beam, animated-gradient-text)
+        │   └── dashboard/
+        │       ├── topbar.tsx     Sticky header: wordmark + file picker (fetches /api/input-files)
+        │       ├── impact-header.tsx   3 KPI cards: savings %, diesel reduction %, runtime
+        │       ├── intro-tab.tsx       Introduction tab: animated hero, blending pairs, how-it-works
+        │       ├── manifest-tab.tsx    Waste Streams tab: table + config overrides + Run button
+        │       ├── recipe-tab.tsx      Optimization tab: phase cards + cost bar chart
+        │       ├── cost-story.tsx      Baseline vs Optimized table + Climate Impact progress bars
+        │       ├── operation-tab.tsx   Operation tab: per-phase operator work instructions
+        │       ├── phase-details-tab.tsx  Phase Details tab: accordion with blend props, Gatekeeper rates, safety checks
+        │       └── expert-overrides.tsx   Technical Calibration section: K-values + phase accordion
+        └── lib/
+            ├── types.ts           TypeScript mirrors of all Python dataclasses
+            └── utils.ts           shadcn cn() utility
 ```
+
+## Architecture: Python ↔ Next.js Bridge
+
+The Next.js dashboard communicates with the Python algorithm via a subprocess bridge:
+
+```
+page.tsx (React state)
+  ├── onFileSelect → GET /api/load-input?file=X → reads input/X.json → setStreams + setConfig
+  └── onRunClick  → POST /api/optimize {streams, config}
+                      └── api/optimize/route.ts
+                            └── spawn(python, [run_optimization.py])
+                                  stdin:  {streams, config} JSON
+                                  stdout: {baseline, optimized, savings_pct, stats, streams, config}
+                                  → NextResponse.json(result)
+```
+
+The API route resolves the Python executable by checking conda env paths in order:
+`~/opt/anaconda3/envs/axnano-smartfeed` → `~/anaconda3/envs/...` → `~/miniconda3/envs/...` → `~/miniforge3/envs/...` → `python3`
+
+`run_optimization.py` at the project root is the bridge script. It takes `{streams, config}` JSON from stdin, constructs `WasteStream` and `SystemConfig` objects, calls `run_optimization(..., verbose=False)`, and serialises the result back to stdout.
 
 ## Core Algorithm Flow
 
@@ -62,40 +127,7 @@ code/                        Project root (VSCode workspace)
 3. Pre-compute: evaluate all (subset × ratio) blend properties and Gatekeeper results, filter infeasible combos, store as templates
 4. Recursive search: enumerate all feasible multi-phase feed plans (templates × inventory → cost-sorted → B&B pruning → recurse)
 5. Select the globally lowest-cost schedule
-6. Output: optimal plan + baseline comparison + safety report, printed to terminal + saved to file
-
-## Dashboard (smartfeed_dashboard.py)
-
-Streamlit + Plotly interactive dashboard with industrial dark theme (steel + amber). Dependencies: `streamlit`, `plotly`, `pandas`.
-
-### 5 Tabs
-
-| Tab | Purpose |
-|-----|---------|
-| **INTRODUCTION** | Algorithm overview, "What is Smart-Feed?" explainer, how-it-works flow diagram |
-| **WASTE STREAMS** | Input table of all waste streams with properties (BTU, pH, F ppm, Solid%, Salt ppm) |
-| **OPTIMIZATION** | Run optimization, show baseline vs optimized cost comparison, Plotly charts (cost breakdown, phase timeline, Sankey diagram) |
-| **OPERATION** | Operator work-instruction cards per phase: waste feed rates (L/min), additive pump rates (diesel/NaOH/water), runtime, cost |
-| **PHASE DETAILS** | Technical deep-dive per phase: blend properties, Gatekeeper rates, itemized costs, safety check |
-
-### Theme Constants
-
-- Colors: `BG=#12151A`, `PANEL_BG=#1A1E26`, `BORDER=#2A3040`, `ACCENT=#F59E0B` (amber), `BLUE=#5E81AC`, `GREEN=#4CAF50`, `RED=#E74C3C`
-- Fonts: JetBrains Mono (data/labels), Inter (body text)
-- Stream colors cycle: amber → blue → green → red → purple
-
-### Safety Check (Phase Details)
-
-Displays effective values **after ALL additives** (water + diesel + NaOH):
-- Solid/Salt dilution: `value / (1 + r_water + r_diesel + r_naoh)` — all external volume dilutes
-- BTU effective: `BTU_blend / (1 + r_water) + r_diesel × BTU_diesel × η` — water dilutes, diesel adds heat
-- Throughput: `W ≥ W_min` check
-
-### Sidebar
-
-- JSON input file selector (from `input/` directory)
-- SystemConfig parameter overrides (F_total, BTU_target, solid_max, salt_max, pH_max, eta, P_system)
-- Unit cost overrides (diesel, NaOH, water, electricity, labor)
+6. Output: optimal plan + baseline comparison + safety report
 
 ## Key Design Decisions
 
@@ -108,27 +140,22 @@ Displays effective values **after ALL additives** (water + diesel + NaOH):
 - **Ratio order-sensitive**: (1,2) ≠ (2,1), representing different blending schemes
 - **Parameter priority**: CLI > JSON config > SystemConfig defaults
 
-## Search Strategy
+## Safety Check Formula (Phase Details tab)
 
-### Search Space Control (3 Bounds + 2 Pruning)
+Effective values **after ALL additives** (water + diesel + NaOH):
+- Solid/Salt dilution: `value / (1 + r_water + r_diesel + r_naoh)`
+- BTU effective: `BTU_blend / (1 + r_water) + r_diesel × BTU_diesel × η`
+- Checks: `solid_eff ≤ solid_max_pct`, `salt_eff ≤ salt_max_ppm`, `W ≥ W_min`, `pH_min ≤ pH ≤ pH_max`
+
+## Search Strategy
 
 - **Bound 1**: ratio sum ≤ ratio_sum_max (default 11)
 - **Bound 2**: GCD = 1 (remove proportionally-scaled duplicates)
-- **Bound 3**: depth ≤ N (N streams → max N phases, each phase exhausts at least one stream)
-- **Prune 1**: pH > pH_max or W < W_min → filtered once during pre-computation
-- **Prune 2**: phase.cost ≥ best_sub_cost → local B&B pruning (break after sort)
-
-### Performance Optimizations
-
-1. **Pre-computed templates**: blend properties, Gatekeeper rates, throughput are inventory-independent, evaluated once and stored as `_PhaseTemplate`
-2. **Template quota**: keep only the 30 lowest cost_per_batch templates per subset, reducing branching factor
-3. **cost_per_batch**: pre-computed cost rate, search-time cost = `num_batches × cost_per_batch` (one multiply)
-4. **Sorted exploration**: candidates sorted by cost ascending at each node, cheapest first, break on first exceed
-5. **Integer memo**: `round(qty, 0)` rounds inventory to nearest liter, merging nearby states
-
-### Memoization Correctness
-
-`_search(inv, depth)` returns **sub-problem cost** (min cost from current inventory to depletion), excluding the caller's cost_so_far. B&B pruning condition `phase.cost >= best_sub_cost` is purely local; memo cached values are independent of call path.
+- **Bound 3**: depth ≤ N streams
+- **Prune 1**: pH > pH_max or W < W_min → filtered during pre-computation
+- **Prune 2**: phase.cost ≥ best_sub_cost → local B&B pruning
+- **Template quota**: 30 lowest cost_per_batch templates per subset
+- **Integer memo**: `round(qty, 0)` merges nearby inventory states
 
 ### Performance Benchmarks
 
@@ -138,12 +165,20 @@ Displays effective values **after ALL additives** (water + diesel + NaOH):
 | 4 streams | 0.8s | ~36% |
 | 5 streams | ~60s | ~41% |
 
+## Next.js Dashboard Design System
+
+**Theme:** Premium Light — `bg-slate-50` page, `bg-white` cards, `#E2E8F0` borders.
+**Brand colors:** Ax-Cyan `#06B6D4` (success/optimized metrics), Ax-Orange `#FF8C00` (CTA buttons, alerts).
+**Typography:** Inter (body), JetBrains Mono for all numeric data values (use `font-data` class).
+**shadcn/ui** uses `@base-ui/react` under the hood — the `Accordion` component uses `multiple` (not `type="multiple"`), and `Select.onValueChange` receives `string | null`.
+**Magic UI components** in `src/components/magicui/` are hand-written copies, not npm packages — edit them directly.
+
 ## Parameters Pending Fitting
 
-The following three K values need fitting from operational data; current values are theoretical estimates:
+Three K values need calibration from operational data (current values are theoretical estimates):
 - `K_F_TO_ACID = 0.053` — F ppm → acid equivalent (meq/L·ppm)
 - `K_PH_TO_BASE = 50.0` — pH base contribution (meq/L·pH_unit)
-- `K_ACID_TO_NAOH_VOL = 8.28e-5` — acid → NaOH volume (L/meq), theoretically derived
+- `K_ACID_TO_NAOH_VOL = 8.28e-5` — acid → NaOH volume (L/meq)
 
 ## Unit Conventions
 
