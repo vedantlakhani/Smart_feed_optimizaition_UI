@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Completed 01-critical-bug-fixes/01-02-PLAN.md
-last_updated: "2026-03-26T21:41:18.665Z"
-last_activity: 2026-03-26 -- Roadmap created
+stopped_at: Completed 02-architecture-scaffold/02-01-PLAN.md
+last_updated: "2026-03-26T22:08:30Z"
+last_activity: 2026-03-26 -- Completed Phase 02 Plan 01 (design tokens + brand color utilities)
 progress:
   total_phases: 6
   completed_phases: 1
-  total_plans: 2
-  completed_plans: 2
-  percent: 50
+  total_plans: 3
+  completed_plans: 3
+  percent: 55
 ---
 
 # Project State
@@ -21,16 +21,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-26)
 
 **Core value:** A non-technical person can open the product, immediately grasp why waste blending matters, and read a credible optimized plan -- no explanation from the AxNano team required.
-**Current focus:** Phase 1: Critical Bug Fixes
+**Current focus:** Phase 2: Architecture Scaffold
 
 ## Current Position
 
-Phase: 1 of 6 (Critical Bug Fixes)
-Plan: 0 of 2 in current phase
-Status: Ready to plan
-Last activity: 2026-03-26 -- Roadmap created
+Phase: 2 of 6 (Architecture Scaffold)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-03-26 -- Completed 02-01 design tokens + brand color utilities
 
-Progress: [█████░░░░░] 50%
+Progress: [█████▌░░░░] 55%
 
 ## Performance Metrics
 
@@ -52,6 +52,7 @@ Progress: [█████░░░░░] 50%
 *Updated after each plan completion*
 | Phase 01-critical-bug-fixes P01 | 3 | 2 tasks | 4 files |
 | Phase 01-critical-bug-fixes P02 | 20 | 2 tasks | 3 files |
+| Phase 02-architecture-scaffold P01 | 6 | 2 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -66,6 +67,9 @@ Recent decisions affecting current work:
 - [Phase 01-critical-bug-fixes]: pH_min check fires before gatekeeper() calls — cheap guard avoids unnecessary computation on infeasible blends
 - [Phase 01-critical-bug-fixes]: BTU_eff_min threshold left hardcoded at 1800 BTU/lb — SystemConfig has no BTU_eff_min field; deferred to calibration phase
 - [Phase 01-critical-bug-fixes]: Two-branch null guard pattern established for result-dependent tabs: !result shows EmptyState, !result.optimized shows NoFeasibleState
+- [Phase 02-architecture-scaffold 02-01]: Design token pattern established — CSS custom properties in @theme inline register as Tailwind utilities; brand colors now single-source-of-truth in globals.css
+- [Phase 02-architecture-scaffold 02-01]: phase-details-tab.tsx and expert-overrides.tsx also had hardcoded hex classNames (not in plan scope) — extended replacement to satisfy verification grep
+- [Phase 02-architecture-scaffold 02-01]: STREAM_COLORS literal hex arrays and magicui colorFrom/colorTo/shimmerColor props left as hex — these are non-className API values
 
 ### Pending Todos
 
@@ -78,6 +82,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-26T21:37:03.753Z
-Stopped at: Completed 01-critical-bug-fixes/01-02-PLAN.md
+Last session: 2026-03-26T22:08:30Z
+Stopped at: Completed 02-architecture-scaffold/02-01-PLAN.md
 Resume file: None

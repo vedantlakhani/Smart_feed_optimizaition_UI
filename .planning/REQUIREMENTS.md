@@ -35,8 +35,8 @@
 
 ### Polish
 
-- [ ] **PLSH-01**: Dashboard and landing page use Apple-like premium aesthetic: shadow-based elevation, generous whitespace, smooth cubic-bezier easing via CSS design tokens in globals.css
-- [ ] **PLSH-02**: All AxNano brand colors are applied via Tailwind utilities (ax-cyan, ax-orange) rather than 40+ hardcoded hex values
+- [x] **PLSH-01**: Dashboard and landing page use Apple-like premium aesthetic: shadow-based elevation, generous whitespace, smooth cubic-bezier easing via CSS design tokens in globals.css
+- [x] **PLSH-02**: All AxNano brand colors are applied via Tailwind utilities (ax-cyan, ax-orange) rather than 40+ hardcoded hex values
 - [ ] **PLSH-03**: Optimization run shows a progress/loading indicator so a 60-second 5-stream run does not appear frozen
 - [ ] **PLSH-04**: A curated 3-stream example input is available that runs in ~0.01s, suitable for live demos without waiting
 
@@ -89,8 +89,8 @@
 | UX-02 | Phase 5: Dashboard UX Redesign | Pending |
 | UX-03 | Phase 5: Dashboard UX Redesign | Pending |
 | UX-04 | Phase 2: Architecture Scaffold | Pending |
-| PLSH-01 | Phase 2: Architecture Scaffold | Pending |
-| PLSH-02 | Phase 2: Architecture Scaffold | Pending |
+| PLSH-01 | Phase 2: Architecture Scaffold | Complete (2026-03-26) |
+| PLSH-02 | Phase 2: Architecture Scaffold | Complete (2026-03-26) |
 | PLSH-03 | Phase 5: Dashboard UX Redesign | Pending |
 | PLSH-04 | Phase 6: Demo Preparation | Pending |
 

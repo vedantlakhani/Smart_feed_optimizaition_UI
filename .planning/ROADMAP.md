@@ -48,7 +48,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Design tokens + hex replacement (PLSH-01, PLSH-02): add shadow/easing tokens to globals.css, replace 40+ hardcoded hex className values across 7 component files with ax-cyan/ax-orange utilities
+- [x] 02-01-PLAN.md — Design tokens + hex replacement (PLSH-01, PLSH-02): add shadow/easing tokens to globals.css, replace 40+ hardcoded hex className values across 7 component files with ax-cyan/ax-orange utilities (completed 2026-03-26)
 - [ ] 02-02-PLAN.md — Route group scaffold + auto-load fix (UX-04): create (marketing)/ and (app)/dashboard/ route groups, move dashboard to /dashboard, pin demo_3stream.json first in input-files API
 
 ### Phase 3: Landing Page
@@ -117,7 +117,7 @@ Note: Phases 3 and 4 can execute in parallel (both depend only on Phase 2).
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Critical Bug Fixes | 2/2 | Complete    | 2026-03-26 |
-| 2. Architecture Scaffold | 0/2 | Not started | - |
+| 2. Architecture Scaffold | 1/2 | In progress | - |
 | 3. Landing Page | 0/2 | Not started | - |
 | 4. Chemistry Validation | 0/2 | Not started | - |
 | 5. Dashboard UX Redesign | 0/2 | Not started | - |
