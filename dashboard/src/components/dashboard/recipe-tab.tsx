@@ -14,7 +14,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { Layers, Clock, Gauge, Beaker } from "lucide-react";
+import { Layers, Clock, Gauge, Beaker, AlertTriangle } from "lucide-react";
 import type { OptimizationResult } from "@/lib/types";
 
 interface RecipeTabProps {
@@ -63,7 +63,34 @@ function LoadingState() {
 
 export function RecipeTab({ result, loading }: RecipeTabProps) {
   if (loading) return <LoadingState />;
-  if (!result?.optimized) return <EmptyState />;
+  if (!result) return <EmptyState />;
+  if (!result.optimized) {
+    return (
+      <div className="flex flex-col items-center justify-center py-20 text-center">
+        <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center mb-4">
+          <AlertTriangle className="w-8 h-8 text-amber-400" />
+        </div>
+        <h3 className="text-slate-700 font-semibold text-base mb-2">
+          No Feasible Blend Found
+        </h3>
+        <p className="text-slate-500 text-sm max-w-sm mb-4">
+          The optimizer could not find a blend that meets all safety constraints
+          (pH range, solids limit, salt limit, minimum throughput).
+          All streams will be processed individually at baseline cost.
+        </p>
+        {result.baseline && (
+          <div className="px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 text-sm text-slate-600">
+            Baseline cost (solo processing):{" "}
+            <span className="font-data font-bold text-slate-800">
+              {result.baseline.total_cost != null
+                ? `$${result.baseline.total_cost.toFixed(0)}`
+                : "N/A (infeasible streams)"}
+            </span>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   const { optimized } = result;
 
