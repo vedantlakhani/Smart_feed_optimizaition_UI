@@ -73,32 +73,32 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| BUG-01 | Phase 1 | Pending |
-| BUG-02 | Phase 1 | Pending |
-| BUG-03 | Phase 1 | Pending |
-| BUG-04 | Phase 1 | Pending |
-| LAND-01 | Phase 3 | Pending |
-| LAND-02 | Phase 3 | Pending |
-| LAND-03 | Phase 3 | Pending |
-| LAND-04 | Phase 3 | Pending |
-| CHEM-01 | Phase 4 | Pending |
-| CHEM-02 | Phase 4 | Pending |
-| CHEM-03 | Phase 4 | Pending |
-| CHEM-04 | Phase 4 | Pending |
-| UX-01 | Phase 5 | Pending |
-| UX-02 | Phase 5 | Pending |
-| UX-03 | Phase 5 | Pending |
-| UX-04 | Phase 2 | Pending |
-| PLSH-01 | Phase 2 | Pending |
-| PLSH-02 | Phase 2 | Pending |
-| PLSH-03 | Phase 5 | Pending |
-| PLSH-04 | Phase 6 | Pending |
+| BUG-01 | Phase 1: Critical Bug Fixes | Pending |
+| BUG-02 | Phase 1: Critical Bug Fixes | Pending |
+| BUG-03 | Phase 1: Critical Bug Fixes | Pending |
+| BUG-04 | Phase 1: Critical Bug Fixes | Pending |
+| LAND-01 | Phase 3: Landing Page | Pending |
+| LAND-02 | Phase 3: Landing Page | Pending |
+| LAND-03 | Phase 3: Landing Page | Pending |
+| LAND-04 | Phase 3: Landing Page | Pending |
+| CHEM-01 | Phase 4: Chemistry Validation | Pending |
+| CHEM-02 | Phase 4: Chemistry Validation | Pending |
+| CHEM-03 | Phase 4: Chemistry Validation | Pending |
+| CHEM-04 | Phase 4: Chemistry Validation | Pending |
+| UX-01 | Phase 5: Dashboard UX Redesign | Pending |
+| UX-02 | Phase 5: Dashboard UX Redesign | Pending |
+| UX-03 | Phase 5: Dashboard UX Redesign | Pending |
+| UX-04 | Phase 2: Architecture Scaffold | Pending |
+| PLSH-01 | Phase 2: Architecture Scaffold | Pending |
+| PLSH-02 | Phase 2: Architecture Scaffold | Pending |
+| PLSH-03 | Phase 5: Dashboard UX Redesign | Pending |
+| PLSH-04 | Phase 6: Demo Preparation | Pending |
 
 **Coverage:**
 - v1 requirements: 20 total
 - Mapped to phases: 20
-- Unmapped: 0 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-26*
-*Last updated: 2026-03-26 after initial definition*
+*Last updated: 2026-03-26 after roadmap creation (traceability verified, all 20 requirements mapped)*
