@@ -62,7 +62,7 @@ function PhaseDetailRow({ phase, idx, cfg }: { phase: PhaseResult; idx: number; 
               .join(" + ")}
           </span>
           {wOk ? (
-            <CheckCircle className="w-3.5 h-3.5 text-[#06b6d4]" />
+            <CheckCircle className="w-3.5 h-3.5 text-ax-cyan" />
           ) : (
             <AlertTriangle className="w-3.5 h-3.5 text-red-500" />
           )}
@@ -99,10 +99,10 @@ function PhaseDetailRow({ phase, idx, cfg }: { phase: PhaseResult; idx: number; 
             <dl className="space-y-1.5">
               {[
                 { label: "r_water", value: phase.r_water.toFixed(4) + " L/L", color: "text-blue-500" },
-                { label: "r_diesel", value: phase.r_diesel.toFixed(4) + " L/L", color: "text-[#ff8c00]" },
+                { label: "r_diesel", value: phase.r_diesel.toFixed(4) + " L/L", color: "text-ax-orange" },
                 { label: "r_naoh", value: phase.r_naoh.toFixed(4) + " L/L", color: "text-emerald-600" },
                 { label: "r_ext (total)", value: phase.r_ext.toFixed(4) + " L/L", color: "text-slate-700" },
-                { label: "W (throughput)", value: phase.W.toFixed(3) + " L/min", color: wOk ? "text-[#06b6d4]" : "text-red-500" },
+                { label: "W (throughput)", value: phase.W.toFixed(3) + " L/min", color: wOk ? "text-ax-cyan" : "text-red-500" },
               ].map(({ label, value, color }) => (
                 <div key={label} className="flex justify-between">
                   <dt className="text-xs text-slate-400 font-data">{label}</dt>
@@ -149,7 +149,7 @@ function PhaseDetailRow({ phase, idx, cfg }: { phase: PhaseResult; idx: number; 
                   <dd className="flex items-center gap-1">
                     <span className="font-data text-xs text-slate-700">{value}</span>
                     {ok ? (
-                      <CheckCircle className="w-3 h-3 text-[#06b6d4]" />
+                      <CheckCircle className="w-3 h-3 text-ax-cyan" />
                     ) : (
                       <AlertTriangle className="w-3 h-3 text-red-500" />
                     )}
@@ -167,12 +167,12 @@ function PhaseDetailRow({ phase, idx, cfg }: { phase: PhaseResult; idx: number; 
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-1">
             {[
-              { label: "Diesel", value: phase.cost_diesel, color: "text-[#ff8c00]" },
+              { label: "Diesel", value: phase.cost_diesel, color: "text-ax-orange" },
               { label: "NaOH", value: phase.cost_naoh, color: "text-emerald-600" },
               { label: "Water", value: phase.cost_water, color: "text-blue-500" },
               { label: "Electricity", value: phase.cost_electricity, color: "text-indigo-500" },
               { label: "Labor", value: phase.cost_labor, color: "text-slate-600" },
-              { label: "Total", value: phase.cost_total, color: "text-[#06b6d4] font-bold" },
+              { label: "Total", value: phase.cost_total, color: "text-ax-cyan font-bold" },
             ].map(({ label, value, color }) => (
               <div key={label} className="flex items-center gap-1.5">
                 <span className="text-xs text-slate-400">{label}:</span>
@@ -217,7 +217,7 @@ export function ExpertOverrides({
               id="tech-toggle"
               checked={showTechnical}
               onCheckedChange={onToggle}
-              className="data-[state=checked]:bg-[#ff8c00]"
+              className="data-[state=checked]:bg-ax-orange"
             />
           </div>
         </div>

@@ -27,8 +27,8 @@ interface PhaseDetailsTabProps {
 }
 
 const PHASE_COLORS = [
-  { text: "text-[#ff8c00]", bg: "bg-[#fff7ed]", border: "border-l-[#ff8c00]" },
-  { text: "text-[#06b6d4]", bg: "bg-[#ecfeff]", border: "border-l-[#06b6d4]" },
+  { text: "text-ax-orange", bg: "bg-[#fff7ed]", border: "border-l-ax-orange" },
+  { text: "text-ax-cyan", bg: "bg-[#ecfeff]", border: "border-l-ax-cyan" },
   { text: "text-[#10b981]", bg: "bg-[#ecfdf5]", border: "border-l-[#10b981]" },
   { text: "text-red-500", bg: "bg-red-50", border: "border-l-red-400" },
   { text: "text-purple-600", bg: "bg-purple-50", border: "border-l-purple-400" },
@@ -64,13 +64,13 @@ function SafetyCheck({ label, value, ok, limit, unit = "" }: {
     <div className="flex items-center justify-between py-2 border-b border-slate-100 last:border-0">
       <div className="flex items-center gap-2">
         {ok
-          ? <CheckCircle className="w-3.5 h-3.5 text-[#06b6d4] shrink-0" />
+          ? <CheckCircle className="w-3.5 h-3.5 text-ax-cyan shrink-0" />
           : <AlertTriangle className="w-3.5 h-3.5 text-red-500 shrink-0" />
         }
         <span className="text-sm text-slate-600">{label}</span>
         <span className="text-xs text-slate-400">({limit})</span>
       </div>
-      <span className={`font-data text-sm font-semibold ${ok ? "text-[#06b6d4]" : "text-red-500"}`}>
+      <span className={`font-data text-sm font-semibold ${ok ? "text-ax-cyan" : "text-red-500"}`}>
         {displayVal}{unit}
       </span>
     </div>
@@ -86,7 +86,7 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
   const wOk = phase.W >= cfg.W_min;
 
   const costRows = [
-    { label: "Diesel", value: phase.cost_diesel, color: "text-[#ff8c00]" },
+    { label: "Diesel", value: phase.cost_diesel, color: "text-ax-orange" },
     { label: "NaOH", value: phase.cost_naoh, color: "text-emerald-600" },
     { label: "Water", value: phase.cost_water, color: "text-blue-500" },
     { label: "Electricity", value: phase.cost_electricity, color: "text-indigo-500" },
@@ -112,7 +112,7 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
             </div>
             <div className="ml-auto flex items-center gap-1.5 mr-2">
               {wOk
-                ? <Badge variant="outline" className="border-[#06b6d4]/40 bg-[#ecfeff] text-[#06b6d4] text-xs">Feasible</Badge>
+                ? <Badge variant="outline" className="border-ax-cyan/40 bg-[#ecfeff] text-ax-cyan text-xs">Feasible</Badge>
                 : <Badge variant="outline" className="border-red-300 bg-red-50 text-red-600 text-xs">W below min</Badge>
               }
             </div>
@@ -156,10 +156,10 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
                   <TableBody>
                     {[
                       { label: "r_water", value: phase.r_water.toFixed(6), color: "text-blue-500" },
-                      { label: "r_diesel", value: phase.r_diesel.toFixed(6), color: "text-[#ff8c00]" },
+                      { label: "r_diesel", value: phase.r_diesel.toFixed(6), color: "text-ax-orange" },
                       { label: "r_naoh", value: phase.r_naoh.toFixed(6), color: "text-emerald-600" },
                       { label: "r_ext", value: phase.r_ext.toFixed(6), color: "text-slate-700" },
-                      { label: "W (L/min)", value: phase.W.toFixed(4), color: wOk ? "text-[#06b6d4]" : "text-red-500" },
+                      { label: "W (L/min)", value: phase.W.toFixed(4), color: wOk ? "text-ax-cyan" : "text-red-500" },
                     ].map(({ label, value, color }) => (
                       <TableRow key={label} className="border-slate-100 hover:bg-slate-50/40">
                         <TableCell className="font-data text-xs text-slate-500 py-1.5 pl-0">{label}</TableCell>

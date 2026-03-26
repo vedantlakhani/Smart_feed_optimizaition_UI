@@ -35,13 +35,13 @@ export function Topbar({ selectedFile, onFileChange }: TopbarProps) {
       {/* Wordmark */}
       <div className="flex items-center gap-2.5">
         <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-slate-900">
-          <Zap className="w-4 h-4 text-[#06b6d4]" />
+          <Zap className="w-4 h-4 text-ax-cyan" />
         </div>
         <div>
           <span className="text-slate-900 font-bold text-lg tracking-tight leading-none">
             Ax
           </span>
-          <span className="text-[#06b6d4] font-bold text-lg tracking-tight leading-none">
+          <span className="text-ax-cyan font-bold text-lg tracking-tight leading-none">
             Optimize
           </span>
         </div>

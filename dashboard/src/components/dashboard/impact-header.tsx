@@ -106,25 +106,25 @@ export function ImpactHeader({ result, loading }: ImpactHeaderProps) {
   return (
     <div className="px-6 py-4 flex gap-4">
       <KpiCard
-        icon={<TrendingDown className="w-5 h-5 text-[#ff8c00]" />}
+        icon={<TrendingDown className="w-5 h-5 text-ax-orange" />}
         label="Lower OpEx vs. Solo Processing"
         targetLabel="Target: ~47%"
         value={hasResult ? Math.round(result!.savings_pct) : undefined}
         suffix="% Saved"
         accentClass="card-accent-orange"
-        textColor="text-[#ff8c00]"
+        textColor="text-ax-orange"
         bgColor="bg-[#fff7ed]"
         loading={loading}
         hasResult={hasResult}
       />
       <KpiCard
-        icon={<Fuel className="w-5 h-5 text-[#06b6d4]" />}
+        icon={<Fuel className="w-5 h-5 text-ax-cyan" />}
         label="Diesel Cost Offset"
         targetLabel="Target: ~96%"
         value={hasResult ? dieselReduction : undefined}
         suffix="% Reduction"
         accentClass="card-accent-cyan"
-        textColor="text-[#06b6d4]"
+        textColor="text-ax-cyan"
         bgColor="bg-[#ecfeff]"
         loading={loading}
         hasResult={hasResult}

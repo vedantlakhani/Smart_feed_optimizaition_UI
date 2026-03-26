@@ -25,8 +25,8 @@ interface ManifestTabProps {
 }
 
 const STREAM_COLORS = [
-  { border: "border-[#ff8c00]", bg: "bg-[#fff7ed]", text: "text-[#ff8c00]" },
-  { border: "border-[#06b6d4]", bg: "bg-[#ecfeff]", text: "text-[#06b6d4]" },
+  { border: "border-ax-orange", bg: "bg-[#fff7ed]", text: "text-ax-orange" },
+  { border: "border-ax-cyan", bg: "bg-[#ecfeff]", text: "text-ax-cyan" },
   { border: "border-[#10b981]", bg: "bg-[#ecfdf5]", text: "text-[#10b981]" },
   { border: "border-[#ef4444]", bg: "bg-[#fef2f2]", text: "text-[#ef4444]" },
   { border: "border-[#8b5cf6]", bg: "bg-[#f5f3ff]", text: "text-[#8b5cf6]" },

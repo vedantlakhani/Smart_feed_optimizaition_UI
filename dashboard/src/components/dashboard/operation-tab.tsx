@@ -22,8 +22,8 @@ interface OperationTabProps {
 }
 
 const PHASE_COLORS = [
-  { bg: "bg-[#fff7ed]", border: "border-[#ff8c00]", text: "text-[#ff8c00]", badge: "border-[#ff8c00]/40 bg-[#fff7ed] text-[#ff8c00]" },
-  { bg: "bg-[#ecfeff]", border: "border-[#06b6d4]", text: "text-[#06b6d4]", badge: "border-[#06b6d4]/40 bg-[#ecfeff] text-[#06b6d4]" },
+  { bg: "bg-[#fff7ed]", border: "border-ax-orange", text: "text-ax-orange", badge: "border-ax-orange/40 bg-[#fff7ed] text-ax-orange" },
+  { bg: "bg-[#ecfeff]", border: "border-ax-cyan", text: "text-ax-cyan", badge: "border-ax-cyan/40 bg-[#ecfeff] text-ax-cyan" },
   { bg: "bg-[#ecfdf5]", border: "border-[#10b981]", text: "text-[#10b981]", badge: "border-[#10b981]/40 bg-[#ecfdf5] text-[#10b981]" },
   { bg: "bg-[#fef2f2]", border: "border-red-400", text: "text-red-500", badge: "border-red-300 bg-red-50 text-red-600" },
   { bg: "bg-[#f5f3ff]", border: "border-purple-400", text: "text-purple-600", badge: "border-purple-300 bg-purple-50 text-purple-600" },
@@ -67,7 +67,7 @@ function MetricRow({ icon, label, value, unit, highlight = false }: {
         <span className="text-sm">{label}</span>
       </div>
       <div className="text-right">
-        <span className={`font-data font-semibold text-sm ${highlight ? "text-[#06b6d4]" : "text-slate-800"}`}>
+        <span className={`font-data font-semibold text-sm ${highlight ? "text-ax-cyan" : "text-slate-800"}`}>
           {value}
         </span>
         {unit && <span className="text-slate-400 text-xs ml-1">{unit}</span>}
@@ -91,7 +91,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
         <span className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
           Operator Work Instructions — {optimized.phases.length} Phase{optimized.phases.length !== 1 ? "s" : ""}
         </span>
-        <Badge variant="outline" className="border-[#ff8c00]/40 bg-[#fff7ed] text-[#ff8c00] text-xs ml-auto">
+        <Badge variant="outline" className="border-ax-orange/40 bg-[#fff7ed] text-ax-orange text-xs ml-auto">
           Print-Ready
         </Badge>
       </div>
@@ -199,7 +199,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
                     <div className="flex items-center justify-between py-2">
                       <span className="text-sm font-semibold text-slate-600">Total waste W</span>
                       <div>
-                        <span className="font-data font-bold text-sm text-[#06b6d4]">
+                        <span className="font-data font-bold text-sm text-ax-cyan">
                           {phase.W.toFixed(3)}
                         </span>
                         <span className="text-slate-400 text-xs ml-1">L/min</span>
@@ -225,7 +225,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
                     unit="L/min"
                   />
                   <MetricRow
-                    icon={<Flame className="w-3.5 h-3.5 text-[#ff8c00]" />}
+                    icon={<Flame className="w-3.5 h-3.5 text-ax-orange" />}
                     label="Diesel pump"
                     value={dieselRate.toFixed(4)}
                     unit="L/min"
@@ -278,7 +278,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
                   <div className="mt-2 pt-2 border-t border-slate-100">
                     <div className="flex justify-between text-xs text-slate-500 mb-1">
                       <span>Diesel</span>
-                      <span className="font-data text-[#ff8c00]">${phase.cost_diesel.toFixed(2)}</span>
+                      <span className="font-data text-ax-orange">${phase.cost_diesel.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-xs text-slate-500 mb-1">
                       <span>NaOH</span>
@@ -321,7 +321,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-sm text-slate-500">Total Optimized Cost:</span>
-            <span className="font-data font-bold text-[#06b6d4] text-lg">
+            <span className="font-data font-bold text-ax-cyan text-lg">
               ${optimized.total_cost.toFixed(0)}
             </span>
           </div>

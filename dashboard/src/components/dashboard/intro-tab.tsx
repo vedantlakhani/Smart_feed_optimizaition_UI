@@ -32,8 +32,8 @@ const HOW_IT_WORKS = [
     step: "01",
     title: "Waste Inventory",
     desc: "You provide each stream's ID, volume, BTU value, pH, fluorine, solids, and salt concentration.",
-    icon: <FlaskConical className="w-5 h-5 text-[#ff8c00]" />,
-    color: "border-l-[#ff8c00]",
+    icon: <FlaskConical className="w-5 h-5 text-ax-orange" />,
+    color: "border-l-ax-orange",
   },
   {
     step: "02",
@@ -46,8 +46,8 @@ const HOW_IT_WORKS = [
     step: "03",
     title: "Blend Search",
     desc: "All feasible multi-stream combinations and ratios are evaluated. Branch-and-bound pruning finds the global minimum-cost schedule.",
-    icon: <Activity className="w-5 h-5 text-[#06b6d4]" />,
-    color: "border-l-[#06b6d4]",
+    icon: <Activity className="w-5 h-5 text-ax-cyan" />,
+    color: "border-l-ax-cyan",
   },
   {
     step: "04",
@@ -59,16 +59,16 @@ const HOW_IT_WORKS = [
 ];
 
 const STATS = [
-  { label: "Typical Savings", value: "36–47%", icon: <TrendingDown className="w-4 h-4" />, color: "text-[#ff8c00]", bg: "bg-[#fff7ed]" },
-  { label: "Max Streams", value: "5", icon: <FlaskConical className="w-4 h-4" />, color: "text-[#06b6d4]", bg: "bg-[#ecfeff]" },
+  { label: "Typical Savings", value: "36–47%", icon: <TrendingDown className="w-4 h-4" />, color: "text-ax-orange", bg: "bg-[#fff7ed]" },
+  { label: "Max Streams", value: "5", icon: <FlaskConical className="w-4 h-4" />, color: "text-ax-cyan", bg: "bg-[#ecfeff]" },
   { label: "3-Stream Runtime", value: "0.01s", icon: <Clock className="w-4 h-4" />, color: "text-emerald-600", bg: "bg-emerald-50" },
   { label: "DRE Guarantee", value: "99.99%", icon: <ShieldCheck className="w-4 h-4" />, color: "text-slate-600", bg: "bg-slate-100" },
 ];
 
 const BLENDING_PAIRS = [
   {
-    a: { label: "High BTU", icon: <Flame className="w-4 h-4 text-[#ff8c00]" />, color: "border-[#ff8c00] bg-[#fff7ed]" },
-    b: { label: "Low BTU", icon: <Droplets className="w-4 h-4 text-[#06b6d4]" />, color: "border-[#06b6d4] bg-[#ecfeff]" },
+    a: { label: "High BTU", icon: <Flame className="w-4 h-4 text-ax-orange" />, color: "border-ax-orange bg-[#fff7ed]" },
+    b: { label: "Low BTU", icon: <Droplets className="w-4 h-4 text-ax-cyan" />, color: "border-ax-cyan bg-[#ecfeff]" },
     benefit: "Eliminates supplemental diesel",
   },
   {
@@ -133,12 +133,12 @@ export function IntroTab() {
           <CardContent className="p-6">
             <div className="flex items-start gap-4">
               <div className="p-3 rounded-xl bg-[#fff7ed] shrink-0">
-                <Zap className="w-6 h-6 text-[#ff8c00]" />
+                <Zap className="w-6 h-6 text-ax-orange" />
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <h2 className="text-base font-bold text-slate-900">Core Insight</h2>
-                  <Badge variant="outline" className="border-[#ff8c00]/40 bg-[#fff7ed] text-[#ff8c00] text-xs">
+                  <Badge variant="outline" className="border-ax-orange/40 bg-[#fff7ed] text-ax-orange text-xs">
                     Key Value Driver
                   </Badge>
                 </div>

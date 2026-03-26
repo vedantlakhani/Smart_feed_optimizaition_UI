@@ -35,7 +35,7 @@ function DeltaCell({ baseline, optimized }: { baseline: number; optimized: numbe
     <TrendingUp className="w-3 h-3" />
   );
   const color = isImproved
-    ? "text-[#06b6d4]"
+    ? "text-ax-cyan"
     : delta === 0
     ? "text-slate-400"
     : "text-red-500";
@@ -145,7 +145,7 @@ export function CostStory({ result, loading }: CostStoryProps) {
                 <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-right">
                   Manual Baseline
                 </TableHead>
-                <TableHead className="text-xs font-semibold text-[#06b6d4] uppercase tracking-wide text-right">
+                <TableHead className="text-xs font-semibold text-ax-cyan uppercase tracking-wide text-right">
                   Ax Optimized
                 </TableHead>
                 <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-right pr-5">
@@ -165,7 +165,7 @@ export function CostStory({ result, loading }: CostStoryProps) {
                   <TableCell className="text-right font-data text-sm text-slate-500">
                     {row.baseline}
                   </TableCell>
-                  <TableCell className="text-right font-data text-sm font-semibold text-[#06b6d4]">
+                  <TableCell className="text-right font-data text-sm font-semibold text-ax-cyan">
                     {row.optimized}
                   </TableCell>
                   <DeltaCell baseline={row.bRaw} optimized={row.oRaw} />
@@ -192,7 +192,7 @@ export function CostStory({ result, loading }: CostStoryProps) {
               <span className="text-sm text-slate-600 font-medium">
                 Diesel Cost Reduction
               </span>
-              <span className="font-data text-sm font-bold text-[#06b6d4]">
+              <span className="font-data text-sm font-bold text-ax-cyan">
                 {dieselReductionPct}%
               </span>
             </div>
@@ -209,7 +209,7 @@ export function CostStory({ result, loading }: CostStoryProps) {
               <span className="text-sm text-slate-600 font-medium">
                 Total Cost Reduction
               </span>
-              <span className="font-data text-sm font-bold text-[#ff8c00]">
+              <span className="font-data text-sm font-bold text-ax-orange">
                 {savings_pct.toFixed(1)}%
               </span>
             </div>

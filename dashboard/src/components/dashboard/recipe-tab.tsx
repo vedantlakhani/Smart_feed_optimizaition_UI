@@ -25,8 +25,8 @@ interface RecipeTabProps {
 const STREAM_COLORS = ["#ff8c00", "#06b6d4", "#10b981", "#ef4444", "#8b5cf6"];
 const STREAM_BG = ["#fff7ed", "#ecfeff", "#ecfdf5", "#fef2f2", "#f5f3ff"];
 const STREAM_BORDER = [
-  "border-[#ff8c00]",
-  "border-[#06b6d4]",
+  "border-ax-orange",
+  "border-ax-cyan",
   "border-[#10b981]",
   "border-[#ef4444]",
   "border-[#8b5cf6]",
@@ -43,7 +43,7 @@ function EmptyState() {
       </h3>
       <p className="text-slate-400 text-sm max-w-xs">
         Go to the Manifest tab, review your waste streams, then click{" "}
-        <span className="text-[#ff8c00] font-medium">Run Optimization</span> to
+        <span className="text-ax-orange font-medium">Run Optimization</span> to
         generate the blending schedule.
       </p>
     </div>
@@ -128,7 +128,7 @@ export function RecipeTab({ result, loading }: RecipeTabProps) {
           </div>
           <div className="flex items-center gap-1.5 text-sm text-slate-500">
             <span>Total:</span>
-            <span className="font-data font-bold text-[#06b6d4]">
+            <span className="font-data font-bold text-ax-cyan">
               ${optimized.total_cost.toFixed(0)}
             </span>
           </div>
@@ -210,7 +210,7 @@ export function RecipeTab({ result, loading }: RecipeTabProps) {
                     </div>
                     <div>
                       <div className="text-slate-400 text-xs mb-0.5">Phase Cost</div>
-                      <div className="font-data font-bold text-[#06b6d4] text-sm">
+                      <div className="font-data font-bold text-ax-cyan text-sm">
                         ${phase.cost_total.toFixed(0)}
                       </div>
                     </div>
@@ -228,7 +228,7 @@ export function RecipeTab({ result, loading }: RecipeTabProps) {
                     {
                       label: "Diesel",
                       value: phase.r_diesel,
-                      color: "text-[#ff8c00]",
+                      color: "text-ax-orange",
                     },
                     {
                       label: "NaOH",
