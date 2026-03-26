@@ -9,8 +9,8 @@
 
 - [x] **BUG-01**: System handles the case where no feasible blend exists without crashing (fix `float("inf")` JSON serialization)
 - [x] **BUG-02**: Optimizer enforces pH_min so blends below safe pH are rejected as infeasible (not incorrectly shown as safe)
-- [ ] **BUG-03**: Phase Details safety check uses user-configured K-values/eta instead of hardcoded constants
-- [ ] **BUG-04**: Dashboard shows a clear message when optimizer returns no result instead of crashing
+- [x] **BUG-03**: Phase Details safety check uses user-configured K-values/eta instead of hardcoded constants
+- [x] **BUG-04**: Dashboard shows a clear message when optimizer returns no result instead of crashing
 
 ### Landing Page
 
@@ -75,8 +75,8 @@
 |-------------|-------|--------|
 | BUG-01 | Phase 1: Critical Bug Fixes | Complete |
 | BUG-02 | Phase 1: Critical Bug Fixes | Complete |
-| BUG-03 | Phase 1: Critical Bug Fixes | Pending |
-| BUG-04 | Phase 1: Critical Bug Fixes | Pending |
+| BUG-03 | Phase 1: Critical Bug Fixes | Complete |
+| BUG-04 | Phase 1: Critical Bug Fixes | Complete |
 | LAND-01 | Phase 3: Landing Page | Pending |
 | LAND-02 | Phase 3: Landing Page | Pending |
 | LAND-03 | Phase 3: Landing Page | Pending |
