@@ -200,3 +200,45 @@ class TestSearch:
         assert cost < float("inf")
         assert len(phases) >= 1
         assert stats["pruned_bound"] >= 0
+
+
+class TestBug01InfSerialization:
+    """BUG-01 regression: float('inf') must not appear in JSON output."""
+
+    def test_sanitize_inf(self):
+        from run_optimization import _sanitize
+        assert _sanitize(float("inf")) is None
+
+    def test_sanitize_neg_inf(self):
+        from run_optimization import _sanitize
+        assert _sanitize(float("-inf")) is None
+
+    def test_sanitize_nan(self):
+        from run_optimization import _sanitize
+        import math
+        result = _sanitize(float("nan"))
+        assert result is None
+
+    def test_sanitize_dict(self):
+        from run_optimization import _sanitize
+        assert _sanitize({"cost": float("inf"), "label": "x"}) == {"cost": None, "label": "x"}
+
+    def test_sanitize_list(self):
+        from run_optimization import _sanitize
+        assert _sanitize([1.0, float("inf"), 2.0]) == [1.0, None, 2.0]
+
+    def test_sanitize_nested(self):
+        from run_optimization import _sanitize
+        assert _sanitize({"a": {"b": float("inf")}}) == {"a": {"b": None}}
+
+    def test_sanitize_normal_float_unchanged(self):
+        from run_optimization import _sanitize
+        assert _sanitize(42.0) == 42.0
+
+    def test_sanitize_produces_valid_json(self):
+        import json
+        from run_optimization import _sanitize
+        obj = {"total": float("inf"), "phases": [{"cost": float("inf")}]}
+        result = json.loads(json.dumps(_sanitize(obj)))
+        assert result["total"] is None
+        assert result["phases"][0]["cost"] is None
