@@ -9,7 +9,11 @@ export async function GET() {
     const files = fs
       .readdirSync(INPUT_DIR)
       .filter((f) => f.endsWith(".json"))
-      .sort();
+      .sort((a, b) => {
+        if (a === "demo_3stream.json") return -1;
+        if (b === "demo_3stream.json") return 1;
+        return a.localeCompare(b);
+      });
     return NextResponse.json({ files });
   } catch {
     return NextResponse.json({ files: [] });
