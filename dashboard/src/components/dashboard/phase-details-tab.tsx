@@ -82,7 +82,7 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
   const dilution = 1 + phase.r_water + phase.r_diesel + phase.r_naoh;
   const solidEff = phase.blend_props.solid_pct / dilution;
   const saltEff = phase.blend_props.salt_ppm / dilution;
-  const btuEff = phase.blend_props.btu_per_lb / (1 + phase.r_water) + phase.r_diesel * 18300 * 0.89;
+  const btuEff = phase.blend_props.btu_per_lb / (1 + phase.r_water) + phase.r_diesel * cfg.BTU_diesel * cfg.eta;
   const wOk = phase.W >= cfg.W_min;
 
   const costRows = [

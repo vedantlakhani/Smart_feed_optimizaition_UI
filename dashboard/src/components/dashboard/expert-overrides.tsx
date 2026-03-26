@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { SlidersHorizontal, AlertTriangle, CheckCircle } from "lucide-react";
-import type { OptimizationResult, PhaseResult } from "@/lib/types";
+import type { OptimizationResult, PhaseResult, SystemConfig } from "@/lib/types";
 
 interface ExpertOverridesProps {
   result: OptimizationResult | null;
@@ -43,12 +43,11 @@ const K_VALUES = [
   },
 ];
 
-function PhaseDetailRow({ phase, idx }: { phase: PhaseResult; idx: number }) {
-  const W_MIN = 0.5;
-  const wOk = phase.W >= W_MIN;
+function PhaseDetailRow({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg: SystemConfig }) {
+  const wOk = phase.W >= cfg.W_min;
   const solidEff = phase.blend_props.solid_pct / (1 + phase.r_water + phase.r_diesel + phase.r_naoh);
   const saltEff = phase.blend_props.salt_ppm / (1 + phase.r_water + phase.r_diesel + phase.r_naoh);
-  const btuEff = phase.blend_props.btu_per_lb / (1 + phase.r_water) + phase.r_diesel * 18300 * 0.89;
+  const btuEff = phase.blend_props.btu_per_lb / (1 + phase.r_water) + phase.r_diesel * cfg.BTU_diesel * cfg.eta;
 
   return (
     <AccordionItem value={`phase-${idx}`} className="border-slate-200">
@@ -123,14 +122,14 @@ function PhaseDetailRow({ phase, idx }: { phase: PhaseResult; idx: number }) {
                 {
                   label: "Effective Solid %",
                   value: solidEff.toFixed(2) + "%",
-                  ok: solidEff <= 15,
-                  limit: "≤15%",
+                  ok: solidEff <= cfg.solid_max_pct,
+                  limit: `≤${cfg.solid_max_pct}%`,
                 },
                 {
                   label: "Effective Salt ppm",
                   value: saltEff.toFixed(0),
-                  ok: saltEff <= 5000,
-                  limit: "≤5000",
+                  ok: saltEff <= cfg.salt_max_ppm,
+                  limit: `≤${cfg.salt_max_ppm}`,
                 },
                 {
                   label: "Effective BTU/lb",
@@ -142,7 +141,7 @@ function PhaseDetailRow({ phase, idx }: { phase: PhaseResult; idx: number }) {
                   label: "W ≥ W_min",
                   value: phase.W.toFixed(3) + " L/min",
                   ok: wOk,
-                  limit: "≥0.5",
+                  limit: `>=${cfg.W_min}`,
                 },
               ].map(({ label, value, ok, limit }) => (
                 <div key={label} className="flex justify-between items-center">
@@ -270,7 +269,7 @@ export function ExpertOverrides({
               </p>
               <Accordion multiple className="space-y-1">
                 {result.optimized.phases.map((phase, idx) => (
-                  <PhaseDetailRow key={idx} phase={phase} idx={idx} />
+                  <PhaseDetailRow key={idx} phase={phase} idx={idx} cfg={result.config} />
                 ))}
               </Accordion>
             </div>
