@@ -8,7 +8,7 @@ Search strategy:
   Bound 1: ratio sum ≤ ratio_sum_max
   Bound 2: GCD = 1 (deduplication)
   Bound 3: depth ≤ N (max N phases for N streams)
-  Prune 1: W < W_min or pH > pH_max → filtered once during pre-computation
+  Prune 1: W < W_min or pH out of [pH_min, pH_max] → filtered once during pre-computation
   Prune 2: phase.cost ≥ best_sub_cost → local B&B pruning (break after sort)
   Memo:    cache sub-problem optimal solutions (return value is sub-problem
            cost, independent of external context)
@@ -113,8 +113,8 @@ def _precompute_templates(streams, cfg, ratio_cache):
                 n_total += 1
                 blend = calc_blend_properties(subset_streams, ratios)
 
-                # Prune 1a: pH upper bound check
-                if blend.pH > cfg.pH_max:
+                # Prune 1a: pH range check (both bounds)
+                if blend.pH < cfg.pH_min or blend.pH > cfg.pH_max:
                     n_infeasible += 1
                     continue
 

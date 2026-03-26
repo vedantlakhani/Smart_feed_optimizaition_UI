@@ -126,15 +126,15 @@ def evaluate_phase(streams: list, ratios: tuple, inventory: dict,
     """
     Fully evaluate a phase: blend → Gatekeeper → throughput → cost
 
-    Returns None if infeasible (W < W_min or pH > pH_max).
+    Returns None if infeasible (W < W_min, pH < pH_min, or pH > pH_max).
     """
     from .blending import calc_blend_properties
 
     stream_ids = [s.stream_id for s in streams]
     blend = calc_blend_properties(streams, ratios)
-    # pH upper bound check: overly alkaline mixtures cannot be processed
-    # (current model has no mechanism to lower pH)
-    if blend.pH > cfg.pH_max:
+    # pH range check: blends outside [pH_min, pH_max] are infeasible
+    # (no mechanism to raise acidic or lower alkaline blends)
+    if blend.pH < cfg.pH_min or blend.pH > cfg.pH_max:
         return None
 
     r_water, r_diesel, r_naoh = gatekeeper(blend, cfg)
