@@ -50,6 +50,20 @@
   --color-ax-cyan-light: #ecfeff;
   --color-ax-orange: #ff8c00;
   --color-ax-orange-light: #fff7ed;
+
+  /* Elevation shadows (Apple-like card depth) */
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.07);
+  --shadow-card-hover: 0 4px 12px 0 rgb(0 0 0 / 0.10), 0 2px 6px -2px rgb(0 0 0 / 0.08);
+  --shadow-topbar: 0 1px 0 0 #e2e8f0;
+
+  /* Smooth cubic-bezier easing */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Whitespace scale */
+  --spacing-section: 5rem;
+  --spacing-card: 1.5rem;
 }
 
 /* ═══════════════════════════════════════════════════
