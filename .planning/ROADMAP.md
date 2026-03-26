@@ -45,11 +45,11 @@ Plans:
   2. All AxNano brand colors (ax-cyan, ax-orange) are applied via Tailwind utility classes sourced from CSS custom properties in globals.css -- no hardcoded hex values remain in component files
   3. Shadow-based elevation, whitespace spacing, and easing values are defined as CSS design tokens in globals.css and consumed via Tailwind utilities throughout the app
   4. The dashboard auto-loads a 3-stream example on first visit so no user ever sees an empty state
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
+- [ ] 02-01-PLAN.md — Design tokens + hex replacement (PLSH-01, PLSH-02): add shadow/easing tokens to globals.css, replace 40+ hardcoded hex className values across 7 component files with ax-cyan/ax-orange utilities
+- [ ] 02-02-PLAN.md — Route group scaffold + auto-load fix (UX-04): create (marketing)/ and (app)/dashboard/ route groups, move dashboard to /dashboard, pin demo_3stream.json first in input-files API
 
 ### Phase 3: Landing Page
 **Goal**: A non-technical visitor understands why waste blending matters and enters the demo within 60 seconds of landing
