@@ -30,11 +30,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. A blend with pH below pH_min (e.g., pH 3.5) is rejected as infeasible by the optimizer -- it never appears in results as a valid processing step
   3. Phase Details safety check values match the user-configured K-values and eta (changing BTU_diesel or eta in Technical Calibration changes the displayed effective BTU accordingly)
   4. All pytest tests pass, including new edge-case tests for single-stream infeasible, all-acidic, and zero-BTU inputs
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — Python fixes: BUG-01 inf serialization (_sanitize helper), BUG-02 pH_min enforcement in gatekeeper.py + search.py, regression tests
+- [ ] 01-02-PLAN.md — Dashboard fixes: BUG-03 hardcoded BTU_diesel/eta/limits replaced with cfg values, BUG-04 "No Feasible Blend Found" message in recipe-tab
 
 ### Phase 2: Architecture Scaffold
 **Goal**: The codebase has route-group isolation, centralized design tokens, and shared modules that unblock all subsequent UI work
@@ -116,7 +116,7 @@ Note: Phases 3 and 4 can execute in parallel (both depend only on Phase 2).
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Critical Bug Fixes | 0/2 | Not started | - |
+| 1. Critical Bug Fixes | 0/2 | Planning done | - |
 | 2. Architecture Scaffold | 0/2 | Not started | - |
 | 3. Landing Page | 0/2 | Not started | - |
 | 4. Chemistry Validation | 0/2 | Not started | - |
