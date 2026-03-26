@@ -31,7 +31,7 @@
 - [ ] **UX-01**: All jargon replaced throughout UI: r_water/r_diesel/r_naoh → plain labels; BTU → energy content; phase → processing step; blend ratio → mix proportion; Gatekeeper/B&B never visible
 - [ ] **UX-02**: Dashboard layout leads with the cost savings story (baseline cost vs. optimized cost) before showing technical details
 - [ ] **UX-03**: Each processing step shows operator-ready plain-language instructions ("Mix X litres of Stream A with Y litres of Stream B")
-- [ ] **UX-04**: Dashboard auto-loads example data on first visit so no user ever sees an empty state
+- [x] **UX-04**: Dashboard auto-loads example data on first visit so no user ever sees an empty state
 
 ### Polish
 
@@ -88,7 +88,7 @@
 | UX-01 | Phase 5: Dashboard UX Redesign | Pending |
 | UX-02 | Phase 5: Dashboard UX Redesign | Pending |
 | UX-03 | Phase 5: Dashboard UX Redesign | Pending |
-| UX-04 | Phase 2: Architecture Scaffold | Pending |
+| UX-04 | Phase 2: Architecture Scaffold | Complete |
 | PLSH-01 | Phase 2: Architecture Scaffold | Complete (2026-03-26) |
 | PLSH-02 | Phase 2: Architecture Scaffold | Complete (2026-03-26) |
 | PLSH-03 | Phase 5: Dashboard UX Redesign | Pending |

@@ -13,7 +13,7 @@ Transform the existing SmartFeed optimizer from a working-but-jargon-heavy proto
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Critical Bug Fixes** - Fix correctness bugs and crash paths so the algorithm produces safe, serializable results (completed 2026-03-26)
-- [ ] **Phase 2: Architecture Scaffold** - Route group split, CSS design tokens, brand utilities, shared modules, and auto-loaded example data
+- [x] **Phase 2: Architecture Scaffold** - Route group split, CSS design tokens, brand utilities, shared modules, and auto-loaded example data (completed 2026-03-26)
 - [ ] **Phase 3: Landing Page** - Problem-first marketing page that educates visitors and drives them into the dashboard demo
 - [ ] **Phase 4: Chemistry Validation** - Assumptions panel with progressive disclosure, confidence badges, and plain-language sensitivity notes
 - [ ] **Phase 5: Dashboard UX Redesign** - Jargon elimination, story-first layout, operator instructions, and loading states
@@ -117,7 +117,7 @@ Note: Phases 3 and 4 can execute in parallel (both depend only on Phase 2).
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Critical Bug Fixes | 2/2 | Complete    | 2026-03-26 |
-| 2. Architecture Scaffold | 1/2 | In progress | - |
+| 2. Architecture Scaffold | 2/2 | Complete   | 2026-03-26 |
 | 3. Landing Page | 0/2 | Not started | - |
 | 4. Chemistry Validation | 0/2 | Not started | - |
 | 5. Dashboard UX Redesign | 0/2 | Not started | - |
