@@ -97,7 +97,7 @@ export function IntroTab() {
         <AnimatedGradientText className="mb-4 text-base font-semibold mx-auto">
           Erasing the Green Premium — One Blend at a Time
         </AnimatedGradientText>
-        <h1 className="text-3xl font-bold text-slate-900 tracking-tight mb-3">
+        <h1 className="text-3xl font-extrabold uppercase tracking-tight text-slate-900 mb-3">
           Smart-Feed Algorithm v9
         </h1>
         <p className="text-slate-500 text-base max-w-xl mx-auto leading-relaxed">
@@ -137,7 +137,7 @@ export function IntroTab() {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <h2 className="text-base font-bold text-slate-900">Core Insight</h2>
+                  <h2 className="text-base font-bold uppercase tracking-widest text-slate-900">Core Insight</h2>
                   <Badge variant="outline" className="border-ax-orange/40 bg-[#fff7ed] text-ax-orange text-xs">
                     Key Value Driver
                   </Badge>
@@ -157,7 +157,7 @@ export function IntroTab() {
 
       {/* Complementary Pairs */}
       <motion.div initial="hidden" animate="visible" custom={3} variants={fadeUp}>
-        <h3 className="text-sm font-semibold text-slate-700 uppercase tracking-wider mb-3">
+        <h3 className="text-sm font-bold text-ax-cyan uppercase tracking-widest mb-3">
           Complementary Blending Pairs
         </h3>
         <div className="grid gap-3 sm:grid-cols-3">
@@ -182,7 +182,7 @@ export function IntroTab() {
 
       {/* How It Works */}
       <motion.div initial="hidden" animate="visible" custom={4} variants={fadeUp}>
-        <h3 className="text-sm font-semibold text-slate-700 uppercase tracking-wider mb-3">
+        <h3 className="text-sm font-bold text-ax-cyan uppercase tracking-widest mb-3">
           How It Works
         </h3>
         <div className="grid gap-3 sm:grid-cols-2">
@@ -209,7 +209,7 @@ export function IntroTab() {
 
       {/* MVP note */}
       <motion.div initial="hidden" animate="visible" custom={9} variants={fadeUp}>
-        <div className="px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 flex items-start gap-2">
+        <div className="px-4 py-3 rounded-lg bg-white border border-slate-200 flex items-start gap-2">
           <Badge variant="outline" className="border-slate-300 text-slate-500 text-xs shrink-0 mt-0.5">
             MVP
           </Badge>

@@ -53,7 +53,7 @@ function PhaseDetailRow({ phase, idx, cfg }: { phase: PhaseResult; idx: number; 
     <AccordionItem value={`phase-${idx}`} className="border-slate-200">
       <AccordionTrigger className="px-4 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:no-underline rounded-lg">
         <div className="flex items-center gap-3">
-          <span className="px-2 py-0.5 rounded bg-slate-900 text-white text-xs font-data font-semibold">
+          <span className="px-2 py-0.5 rounded bg-slate-900 text-white text-xs font-data font-bold uppercase tracking-widest">
             Phase {idx + 1}
           </span>
           <span className="text-slate-500 text-xs font-normal">
@@ -72,7 +72,7 @@ function PhaseDetailRow({ phase, idx, cfg }: { phase: PhaseResult; idx: number; 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Blend Properties */}
           <div>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+            <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest mb-2">
               Blend Properties
             </p>
             <dl className="space-y-1.5">
@@ -93,7 +93,7 @@ function PhaseDetailRow({ phase, idx, cfg }: { phase: PhaseResult; idx: number; 
 
           {/* Gatekeeper Rates */}
           <div>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+            <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest mb-2">
               Gatekeeper Rates
             </p>
             <dl className="space-y-1.5">
@@ -114,7 +114,7 @@ function PhaseDetailRow({ phase, idx, cfg }: { phase: PhaseResult; idx: number; 
 
           {/* Safety Check */}
           <div>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+            <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest mb-2">
               Safety Check
             </p>
             <dl className="space-y-1.5">
@@ -199,7 +199,7 @@ export function ExpertOverrides({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <SlidersHorizontal className="w-4 h-4 text-slate-400" />
-            <CardTitle className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
+            <CardTitle className="text-sm font-bold text-slate-900 uppercase tracking-widest">
               Technical Calibration
             </CardTitle>
             <Badge
@@ -227,18 +227,18 @@ export function ExpertOverrides({
         <CardContent className="px-5 pb-5 space-y-5">
           {/* K-Values */}
           <div>
-            <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
+            <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest mb-3">
               Chemical Constants (K-Values)
             </p>
             <div className="space-y-2">
               {K_VALUES.map((kv) => (
                 <div
                   key={kv.key}
-                  className="flex items-start justify-between p-3 rounded-lg bg-slate-50 border border-slate-200"
+                  className="flex items-start justify-between p-3 rounded-lg bg-white border border-slate-200"
                 >
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-data text-sm font-semibold text-slate-800">
+                      <span className="font-data text-xs font-bold uppercase tracking-widest text-slate-800">
                         {kv.label}
                       </span>
                       <Badge
@@ -264,7 +264,7 @@ export function ExpertOverrides({
           {/* Per-phase technical detail */}
           {result?.optimized && (
             <div>
-              <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">
+              <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest mb-3">
                 Phase Technical Detail
               </p>
               <Accordion multiple className="space-y-1">

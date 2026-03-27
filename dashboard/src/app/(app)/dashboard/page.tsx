@@ -97,98 +97,118 @@ export default function Home() {
   const resultTabs = ["operation", "details"];
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ background: "#f0f2f4" }}>
       {/* Sticky topbar */}
       <Topbar selectedFile={selectedFile} onFileChange={setSelectedFile} />
 
       {/* Impact KPI header */}
       <ImpactHeader result={result} loading={loading} />
 
-      <Separator className="bg-slate-200" />
+      {/* Tab bar — AxNano charcoal chrome */}
+      <div style={{ background: "#2b2a2b", borderBottom: "2px solid #2aabe1" }}>
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Error banner */}
+          {error && (
+            <div className="pt-3 pb-0">
+              <div className="px-4 py-2 bg-red-900/40 border border-red-500/50 text-red-300 text-sm flex items-start gap-2">
+                <span className="font-bold shrink-0 uppercase tracking-wide text-xs">Error:</span>
+                <span className="font-mono text-xs leading-relaxed break-all">{error}</span>
+              </div>
+            </div>
+          )}
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <TabsList className="bg-transparent border-0 shadow-none h-auto p-0 flex gap-0 rounded-none">
+              {TABS.map((t) => {
+                const isResultTab = resultTabs.includes(t.value);
+                const isDisabled = isResultTab && !result;
+                return (
+                  <TabsTrigger
+                    key={t.value}
+                    value={t.value}
+                    disabled={isDisabled}
+                    className="
+                      relative rounded-none border-0 bg-transparent px-5 py-3.5
+                      text-xs font-bold uppercase tracking-widest text-white/50
+                      gap-1.5 transition-colors duration-150
+                      hover:text-white/80
+                      data-[state=active]:bg-transparent
+                      data-[state=active]:text-white
+                      data-[state=active]:shadow-none
+                      data-[state=active]:after:absolute
+                      data-[state=active]:after:bottom-0
+                      data-[state=active]:after:left-0
+                      data-[state=active]:after:right-0
+                      data-[state=active]:after:h-[2px]
+                      data-[state=active]:after:bg-[#2aabe1]
+                      disabled:opacity-25 disabled:cursor-not-allowed
+                    "
+                  >
+                    {t.icon}
+                    <span className="hidden sm:inline">{t.label}</span>
+                  </TabsTrigger>
+                );
+              })}
+            </TabsList>
 
-      {/* Main content */}
-      <div className="flex-1 px-6 py-5 max-w-7xl mx-auto w-full">
-        {/* Error banner */}
-        {error && (
-          <div className="mb-4 px-4 py-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm flex items-start gap-2">
-            <span className="font-semibold shrink-0">Error:</span>
-            <span className="font-mono text-xs leading-relaxed break-all">{error}</span>
-          </div>
-        )}
+            {/* Tab content — sits outside the dark bar */}
+            <div style={{ background: "#f0f2f4" }}>
+              <div className="py-5" style={{ background: "#f0f2f4" }}>
+                <TabsContent value="intro" className="mt-0">
+                  <IntroTab />
+                </TabsContent>
 
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-6">
-          <TabsList className="bg-white border border-slate-200 shadow-sm h-10 p-1 rounded-lg flex gap-0.5">
-            {TABS.map((t) => {
-              const isResultTab = resultTabs.includes(t.value);
-              const isDisabled = isResultTab && !result;
-              return (
-                <TabsTrigger
-                  key={t.value}
-                  value={t.value}
-                  disabled={isDisabled}
-                  className="text-sm gap-1.5 data-[state=active]:bg-slate-900 data-[state=active]:text-white data-[state=active]:shadow-sm rounded-md px-3.5 disabled:opacity-40 disabled:cursor-not-allowed"
-                >
-                  {t.icon}
-                  <span className="hidden sm:inline">{t.label}</span>
-                </TabsTrigger>
-              );
-            })}
-          </TabsList>
-
-          <div className="mt-5">
-            <TabsContent value="intro" className="mt-0">
-              <IntroTab />
-            </TabsContent>
-
-            <TabsContent value="manifest" className="mt-0">
-              <ManifestTab
-                streams={streams}
-                config={config}
-                onConfigChange={handleConfigChange}
-                onRun={handleRun}
-                loading={loading}
-              />
-            </TabsContent>
-
-            <TabsContent value="recipe" className="mt-0">
-              <RecipeTab result={result} loading={loading} />
-              {/* Cost Story lives below Recipe output */}
-              {(result || loading) && (
-                <div className="mt-6">
-                  <CostStory result={result} loading={loading} />
-                </div>
-              )}
-            </TabsContent>
-
-            <TabsContent value="operation" className="mt-0">
-              <OperationTab result={result} loading={loading} />
-            </TabsContent>
-
-            <TabsContent value="details" className="mt-0">
-              <PhaseDetailsTab result={result} loading={loading} />
-              {/* Technical Calibration panel at bottom of Phase Details */}
-              {result && (
-                <div className="mt-6">
-                  <ExpertOverrides
-                    result={result}
-                    showTechnical={showTechnical}
-                    onToggle={setShowTechnical}
+                <TabsContent value="manifest" className="mt-0">
+                  <ManifestTab
+                    streams={streams}
+                    config={config}
+                    onConfigChange={handleConfigChange}
+                    onRun={handleRun}
+                    loading={loading}
                   />
-                </div>
-              )}
-            </TabsContent>
-          </div>
-        </Tabs>
+                </TabsContent>
+
+                <TabsContent value="recipe" className="mt-0">
+                  <RecipeTab result={result} loading={loading} />
+                  {(result || loading) && (
+                    <div className="mt-6">
+                      <CostStory result={result} loading={loading} />
+                    </div>
+                  )}
+                </TabsContent>
+
+                <TabsContent value="operation" className="mt-0">
+                  <OperationTab result={result} loading={loading} />
+                </TabsContent>
+
+                <TabsContent value="details" className="mt-0">
+                  <PhaseDetailsTab result={result} loading={loading} />
+                  {result && (
+                    <div className="mt-6">
+                      <ExpertOverrides
+                        result={result}
+                        showTechnical={showTechnical}
+                        onToggle={setShowTechnical}
+                      />
+                    </div>
+                  )}
+                </TabsContent>
+              </div>
+            </div>
+          </Tabs>
+        </div>
       </div>
 
+      {/* Spacer to push footer down */}
+      <div className="flex-1" />
+
       {/* Footer */}
-      <footer className="border-t border-slate-200 bg-white px-6 py-3 mt-auto">
+      <footer style={{ background: "#2b2a2b", borderTop: "1px solid #3d3d3d" }} className="px-6 py-3 mt-auto">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <span className="text-slate-400 text-xs">
-            AxNano Smart-Feed Algorithm v9 — SCWO Reactor Optimization
+          <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#2aabe1" }}>
+            AxNano SmartFeed v9
           </span>
-          <span className="text-slate-300 text-xs font-data">
-            MVP Prototype · ≤5 Waste Streams
+          <span className="text-xs font-light" style={{ color: "#737373" }}>
+            SCWO Reactor Optimization · MVP Prototype · ≤5 Waste Streams
           </span>
         </div>
       </footer>

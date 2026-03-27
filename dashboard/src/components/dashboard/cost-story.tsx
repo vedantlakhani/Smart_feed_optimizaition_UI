@@ -62,7 +62,7 @@ function LoadingState() {
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
-      <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center mb-4">
+      <div className="w-14 h-14 rounded-lg bg-slate-100 flex items-center justify-center mb-4">
         <BarChart3 className="w-7 h-7 text-slate-300" />
       </div>
       <p className="text-slate-400 text-sm max-w-xs">
@@ -130,7 +130,7 @@ export function CostStory({ result, loading }: CostStoryProps) {
         <CardHeader className="pb-3 pt-4 px-5">
           <div className="flex items-center gap-2">
             <BarChart3 className="w-4 h-4 text-slate-400" />
-            <CardTitle className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
+            <CardTitle className="text-sm font-bold text-slate-900 uppercase tracking-widest">
               Cost Story — Baseline vs. Optimized
             </CardTitle>
           </div>
@@ -138,17 +138,17 @@ export function CostStory({ result, loading }: CostStoryProps) {
         <CardContent className="px-0 pb-0">
           <Table>
             <TableHeader>
-              <TableRow className="bg-slate-50 border-slate-200">
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide pl-5">
+              <TableRow className="bg-white border-slate-200">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest pl-5">
                   Metric
                 </TableHead>
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-right">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest text-right">
                   Manual Baseline
                 </TableHead>
                 <TableHead className="text-xs font-semibold text-ax-cyan uppercase tracking-wide text-right">
                   Ax Optimized
                 </TableHead>
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-right pr-5">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest text-right pr-5">
                   Delta
                 </TableHead>
               </TableRow>
@@ -181,7 +181,7 @@ export function CostStory({ result, loading }: CostStoryProps) {
         <CardHeader className="pb-3 pt-4 px-5">
           <div className="flex items-center gap-2">
             <Leaf className="w-4 h-4 text-emerald-500" />
-            <CardTitle className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
+            <CardTitle className="text-xs font-bold text-ax-cyan uppercase tracking-widest">
               Climate Impact
             </CardTitle>
           </div>
@@ -189,7 +189,7 @@ export function CostStory({ result, loading }: CostStoryProps) {
         <CardContent className="px-5 pb-5 space-y-4">
           <div>
             <div className="flex justify-between items-center mb-1.5">
-              <span className="text-sm text-slate-600 font-medium">
+              <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">
                 Diesel Cost Reduction
               </span>
               <span className="font-data text-sm font-bold text-ax-cyan">
@@ -206,7 +206,7 @@ export function CostStory({ result, loading }: CostStoryProps) {
           </div>
           <div>
             <div className="flex justify-between items-center mb-1.5">
-              <span className="text-sm text-slate-600 font-medium">
+              <span className="text-xs font-bold text-slate-600 uppercase tracking-widest">
                 Total Cost Reduction
               </span>
               <span className="font-data text-sm font-bold text-ax-orange">

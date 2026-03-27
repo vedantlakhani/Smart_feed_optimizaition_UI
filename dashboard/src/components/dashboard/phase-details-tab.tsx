@@ -37,7 +37,7 @@ const PHASE_COLORS = [
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
-      <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mb-4">
+      <div className="w-16 h-16 rounded-lg bg-slate-100 flex items-center justify-center mb-4">
         <Microscope className="w-8 h-8 text-slate-300" />
       </div>
       <h3 className="text-slate-600 font-semibold text-base mb-2">No Phase Data Yet</h3>
@@ -100,7 +100,7 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
         <AccordionTrigger className="px-5 py-3 hover:no-underline hover:bg-slate-50 [&>svg]:text-slate-400 w-full">
           <div className="flex items-center gap-3 text-left w-full">
             <div className={`px-2.5 py-1 rounded-lg ${col.bg}`}>
-              <span className={`font-data font-bold text-sm ${col.text}`}>Phase {idx + 1}</span>
+              <span className={`font-data font-bold text-sm uppercase tracking-widest ${col.text}`}>Phase {idx + 1}</span>
             </div>
             <div>
               <p className="text-sm font-semibold text-slate-800">
@@ -126,7 +126,7 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
 
               {/* Blend Properties */}
               <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+                <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest mb-2">
                   Blend Properties
                 </p>
                 <Table>
@@ -149,7 +149,7 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
 
               {/* Gatekeeper Rates */}
               <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+                <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest mb-2">
                   Gatekeeper Rates (L/L)
                 </p>
                 <Table>
@@ -172,7 +172,7 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
 
               {/* Itemised Costs */}
               <div>
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">
+                <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest mb-2">
                   Itemised Costs
                 </p>
                 <div className="space-y-1.5">
@@ -200,11 +200,11 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <ShieldCheck className="w-3.5 h-3.5 text-slate-400" />
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest">
                   Safety Check — Effective Values After All Additives
                 </p>
               </div>
-              <Card className="border-slate-200 shadow-none bg-slate-50">
+              <Card className="border-slate-200 shadow-none bg-white">
                 <CardContent className="px-4 py-1">
                   <SafetyCheck label="Effective Solid %" value={solidEff} ok={solidEff <= cfg.solid_max_pct} limit={`≤${cfg.solid_max_pct}%`} unit="%" />
                   <SafetyCheck label="Effective Salt (ppm)" value={saltEff} ok={saltEff <= cfg.salt_max_ppm} limit={`≤${cfg.salt_max_ppm}`} unit=" ppm" />
@@ -231,7 +231,7 @@ export function PhaseDetailsTab({ result, loading }: PhaseDetailsTabProps) {
     <div className="space-y-4">
       <div className="flex items-center gap-2 px-1">
         <Microscope className="w-4 h-4 text-slate-400" />
-        <span className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
+        <span className="text-sm font-bold text-slate-900 uppercase tracking-widest">
           Phase Technical Deep-Dive
         </span>
         <Badge variant="outline" className="border-slate-300 text-slate-500 text-xs ml-auto">

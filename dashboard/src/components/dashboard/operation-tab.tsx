@@ -34,7 +34,7 @@ const STREAM_COLORS = ["#ff8c00", "#06b6d4", "#10b981", "#ef4444", "#8b5cf6"];
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
-      <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mb-4">
+      <div className="w-16 h-16 rounded-lg bg-slate-100 flex items-center justify-center mb-4">
         <HardHat className="w-8 h-8 text-slate-300" />
       </div>
       <h3 className="text-slate-600 font-semibold text-base mb-2">No Work Instructions Yet</h3>
@@ -88,7 +88,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
       {/* Header */}
       <div className="flex items-center gap-2 px-1">
         <HardHat className="w-4 h-4 text-slate-400" />
-        <span className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
+        <span className="text-sm font-bold text-slate-900 uppercase tracking-widest">
           Operator Work Instructions — {optimized.phases.length} Phase{optimized.phases.length !== 1 ? "s" : ""}
         </span>
         <Badge variant="outline" className="border-ax-orange/40 bg-[#fff7ed] text-ax-orange text-xs ml-auto">
@@ -134,7 +134,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2.5">
                   <div className={`px-2.5 py-1 rounded-lg ${col.bg} border ${col.border}`}>
-                    <span className={`font-data font-bold text-sm ${col.text}`}>
+                    <span className={`font-data font-bold text-sm uppercase tracking-widest ${col.text}`}>
                       Phase {idx + 1}
                     </span>
                   </div>
@@ -166,7 +166,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
                 <div>
                   <div className="flex items-center gap-1.5 mb-2">
                     <FlaskConical className="w-3.5 h-3.5 text-slate-400" />
-                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                    <span className="text-xs font-bold text-ax-cyan uppercase tracking-widest">
                       Waste Feed Rates
                     </span>
                   </div>
@@ -214,7 +214,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
                 <div>
                   <div className="flex items-center gap-1.5 mb-2">
                     <Gauge className="w-3.5 h-3.5 text-slate-400" />
-                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                    <span className="text-xs font-bold text-ax-cyan uppercase tracking-widest">
                       Additive Pump Rates
                     </span>
                   </div>
@@ -237,7 +237,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
                     value={naohRate.toFixed(4)}
                     unit="L/min"
                   />
-                  <div className="mt-2 px-3 py-2 rounded-lg bg-slate-50 border border-slate-200">
+                  <div className="mt-2 px-3 py-2 rounded-lg bg-white border border-slate-200">
                     <p className="text-xs text-slate-500">
                       <span className="font-semibold text-slate-700">r_ext = </span>
                       <span className="font-data">{phase.r_ext.toFixed(4)}</span>
@@ -252,7 +252,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
                 <div>
                   <div className="flex items-center gap-1.5 mb-2">
                     <CircleDollarSign className="w-3.5 h-3.5 text-slate-400" />
-                    <span className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                    <span className="text-xs font-bold text-ax-cyan uppercase tracking-widest">
                       Runtime & Cost
                     </span>
                   </div>
@@ -311,16 +311,16 @@ export function OperationTab({ result, loading }: OperationTabProps) {
       })}
 
       {/* Summary footer */}
-      <Card className="shadow-sm border-slate-200 bg-slate-50">
+      <Card className="shadow-sm border-slate-200 bg-white">
         <CardContent className="px-5 py-4 flex items-center justify-between flex-wrap gap-3">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-slate-500">Total Optimized Runtime:</span>
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Total Optimized Runtime:</span>
             <span className="font-data font-bold text-slate-800">
               {optimized.total_runtime_hr.toFixed(2)} hr
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-slate-500">Total Optimized Cost:</span>
+            <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Total Optimized Cost:</span>
             <span className="font-data font-bold text-ax-cyan text-lg">
               ${optimized.total_cost.toFixed(0)}
             </span>

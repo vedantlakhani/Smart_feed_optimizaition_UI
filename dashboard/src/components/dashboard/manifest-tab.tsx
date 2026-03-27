@@ -112,7 +112,7 @@ export function ManifestTab({
         <CardHeader className="pb-3 pt-4 px-5">
           <div className="flex items-center gap-2">
             <FlaskConical className="w-4 h-4 text-slate-400" />
-            <CardTitle className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
+            <CardTitle className="text-sm font-bold text-slate-900 uppercase tracking-widest">
               Waste Manifest — {streams.length} Stream{streams.length !== 1 ? "s" : ""}
             </CardTitle>
           </div>
@@ -120,26 +120,26 @@ export function ManifestTab({
         <CardContent className="px-0 pb-0">
           <Table>
             <TableHeader>
-              <TableRow className="bg-slate-50 border-slate-200">
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide pl-5">
+              <TableRow className="bg-white border-slate-200">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest pl-5">
                   Stream ID
                 </TableHead>
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-right">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest text-right">
                   Qty (L)
                 </TableHead>
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-right">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest text-right">
                   BTU/lb
                 </TableHead>
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest">
                   pH
                 </TableHead>
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-right">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest text-right">
                   F (ppm)
                 </TableHead>
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-right">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest text-right">
                   Solids %
                 </TableHead>
-                <TableHead className="text-xs font-semibold text-slate-500 uppercase tracking-wide text-right pr-5">
+                <TableHead className="text-xs font-bold text-ax-cyan uppercase tracking-widest text-right pr-5">
                   Salt (ppm)
                 </TableHead>
               </TableRow>
@@ -191,7 +191,7 @@ export function ManifestTab({
       {/* System Config Overrides */}
       <Card className="shadow-sm border-slate-200">
         <CardHeader className="pb-3 pt-4 px-5">
-          <CardTitle className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
+          <CardTitle className="text-sm font-bold text-slate-900 uppercase tracking-widest">
             Reactor Parameters
           </CardTitle>
         </CardHeader>

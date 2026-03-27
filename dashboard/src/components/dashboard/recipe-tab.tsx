@@ -35,10 +35,10 @@ const STREAM_BORDER = [
 function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
-      <div className="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mb-4">
+      <div className="w-16 h-16 rounded-lg bg-slate-100 flex items-center justify-center mb-4">
         <Beaker className="w-8 h-8 text-slate-300" />
       </div>
-      <h3 className="text-slate-600 font-semibold text-base mb-2">
+      <h3 className="text-slate-900 font-bold uppercase tracking-wide text-base mb-2">
         No Feed Recipe Yet
       </h3>
       <p className="text-slate-400 text-sm max-w-xs">
@@ -67,10 +67,10 @@ export function RecipeTab({ result, loading }: RecipeTabProps) {
   if (!result.optimized) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
-        <div className="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center mb-4">
+        <div className="w-16 h-16 rounded-lg bg-amber-50 flex items-center justify-center mb-4">
           <AlertTriangle className="w-8 h-8 text-amber-400" />
         </div>
-        <h3 className="text-slate-700 font-semibold text-base mb-2">
+        <h3 className="text-slate-900 font-bold uppercase tracking-wide text-base mb-2">
           No Feasible Blend Found
         </h3>
         <p className="text-slate-500 text-sm max-w-sm mb-4">
@@ -79,7 +79,7 @@ export function RecipeTab({ result, loading }: RecipeTabProps) {
           All streams will be processed individually at baseline cost.
         </p>
         {result.baseline && (
-          <div className="px-4 py-3 rounded-lg bg-slate-50 border border-slate-200 text-sm text-slate-600">
+          <div className="px-4 py-3 rounded-lg bg-white border border-slate-200 text-sm text-slate-600">
             Baseline cost (solo processing):{" "}
             <span className="font-data font-bold text-slate-800">
               {result.baseline.total_cost != null
@@ -113,7 +113,7 @@ export function RecipeTab({ result, loading }: RecipeTabProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Layers className="w-4 h-4 text-slate-400" />
-          <span className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
+          <span className="text-sm font-bold text-slate-900 uppercase tracking-widest">
             Optimized Feed Schedule — {optimized.phases.length} Phase
             {optimized.phases.length !== 1 ? "s" : ""}
           </span>
@@ -158,7 +158,7 @@ export function RecipeTab({ result, loading }: RecipeTabProps) {
                   {/* Phase label + streams */}
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="px-2 py-0.5 rounded bg-slate-900 text-white text-xs font-semibold font-data">
+                      <div className="px-2 py-0.5 rounded bg-slate-900 text-white text-xs font-bold uppercase tracking-widest font-data">
                         Phase {idx + 1}
                       </div>
                       {streamEntries.map(([sid, ratio]) => {
@@ -259,7 +259,7 @@ export function RecipeTab({ result, loading }: RecipeTabProps) {
       {/* Cost Breakdown Chart */}
       <Card className="shadow-sm border-slate-200">
         <CardHeader className="pb-2 pt-4 px-5">
-          <CardTitle className="text-sm font-semibold text-slate-700 uppercase tracking-wider">
+          <CardTitle className="text-xs font-bold text-ax-cyan uppercase tracking-widest">
             Phase Cost Breakdown
           </CardTitle>
         </CardHeader>
