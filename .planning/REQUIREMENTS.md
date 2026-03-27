@@ -22,7 +22,7 @@
 ### Chemistry Validation
 
 - [x] **CHEM-01**: Dashboard shows an assumptions panel with K-values described in plain language with confidence badges ("theoretical estimate — not yet calibrated")
-- [ ] **CHEM-02**: Chemistry details use progressive disclosure: plain language summary always visible, formula expandable, derivation expandable — so both professors and operators are served
+- [x] **CHEM-02**: Chemistry details use progressive disclosure: plain language summary always visible, formula expandable, derivation expandable — so both professors and operators are served
 - [x] **CHEM-03**: Cost savings figures are accompanied by a plain-language sensitivity note explaining they are directional estimates pending K-value calibration
 - [x] **CHEM-04**: Each of the 9 MVP assumptions (A1–A9) is presented in one plain-English sentence accessible in the dashboard
 
@@ -82,7 +82,7 @@
 | LAND-03 | Phase 3: Landing Page | Complete |
 | LAND-04 | Phase 3: Landing Page | Complete |
 | CHEM-01 | Phase 4: Chemistry Validation | Complete |
-| CHEM-02 | Phase 4: Chemistry Validation | Pending |
+| CHEM-02 | Phase 4: Chemistry Validation | Complete |
 | CHEM-03 | Phase 4: Chemistry Validation | Complete |
 | CHEM-04 | Phase 4: Chemistry Validation | Complete |
 | UX-01 | Phase 5: Dashboard UX Redesign | Pending |
