@@ -62,7 +62,7 @@ completed: 2026-03-26
 - **Duration:** ~8 min
 - **Started:** 2026-03-26T22:11:24Z
 - **Completed:** 2026-03-26T22:19:00Z
-- **Tasks:** 2 (+ 1 checkpoint, human-verify pending)
+- **Tasks:** 2 (+ 1 checkpoint, human-verify approved)
 - **Files modified:** 5 (4 created, 1 modified, 1 deleted)
 
 ## Accomplishments
@@ -78,7 +78,7 @@ Each task was committed atomically:
 1. **Task 1: Scaffold route groups and move dashboard to /dashboard** - `78ca46d` (feat)
 2. **Task 2: Pin demo_3stream.json first in input-files API (UX-04)** - `7e772ca` (feat)
 
-**Plan metadata:** (pending final commit)
+**Plan metadata:** `1ea12a3` (docs: complete route group scaffold + demo auto-load plan)
 
 ## Files Created/Modified
 - `dashboard/src/app/(marketing)/layout.tsx` - Marketing route group layout (div wrapper, no html/body)
@@ -107,7 +107,14 @@ None — no external service configuration required.
 - Route group scaffold is in place and build-verified; Phase 3 (landing page) can build directly on top of `(marketing)/page.tsx`
 - `/dashboard` route serves the full dashboard; Phase 4 (demo flow) can rely on this URL
 - `demo_3stream.json` auto-loads on first visit — reviewers see populated data without any interaction
-- Checkpoint 3 (human-verify) is outstanding: reviewer should visit http://localhost:3000 and http://localhost:3000/dashboard to confirm visual behavior before Phase 3 begins
+- Human verification checkpoint passed — all 6 checks confirmed: / shows landing placeholder with no dashboard chrome, /dashboard shows full dashboard with topbar + 5 tabs, demo_3stream.json auto-loads on first visit (3 streams populated), /api/input-files returns demo_3stream.json as files[0]
+
+## Self-Check: PASSED
+
+- FOUND: 02-02-SUMMARY.md
+- FOUND: commit 78ca46d (feat: scaffold route groups and move dashboard to /dashboard)
+- FOUND: commit 7e772ca (feat: pin demo_3stream.json first in input-files API)
+- FOUND: commit 1ea12a3 (docs: complete route group scaffold + demo auto-load plan)
 
 ---
 *Phase: 02-architecture-scaffold*
