@@ -60,11 +60,11 @@ Plans:
   2. A 3-step visual explainer (load streams, optimize, get a plan) is visible and takes under 30 seconds to read with zero jargon
   3. A climate impact section expresses fuel savings in CO2 equivalent terms (e.g., "equivalent to X fewer truck trips")
   4. A single prominent CTA button navigates to `/dashboard` with example data pre-loaded, requiring zero configuration from the visitor
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md — Patch AnimatedGradientText brand gradient + write full landing page (hero, 3-step explainer, climate impact, CTA)
+- [ ] 03-02-PLAN.md — Build verification + human visual sign-off (above-fold layout, jargon check, CTA navigation)
 
 ### Phase 4: Chemistry Validation
 **Goal**: Technical reviewers can see exactly what is calibrated vs. assumed, and non-technical viewers are not confused by it
