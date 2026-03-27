@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 4 UI-SPEC approved
-last_updated: "2026-03-27T11:26:07.198Z"
+stopped_at: Completed 04-01 assumptions-panel + sensitivity-note components
+last_updated: "2026-03-27T11:37:59.739Z"
 last_activity: 2026-03-26 -- Completed 02-01 design tokens + brand color utilities
 progress:
   total_phases: 6
   completed_phases: 2
-  total_plans: 6
-  completed_plans: 5
+  total_plans: 8
+  completed_plans: 6
   percent: 55
 ---
 
@@ -56,6 +56,7 @@ Progress: [█████▌░░░░] 55%
 | Phase 02-architecture-scaffold P02 | 8 | 2 tasks | 5 files |
 | Phase 02-architecture-scaffold P02 | 15 | 2 tasks | 5 files |
 | Phase 03-landing-page P01 | 3 | 2 tasks | 3 files |
+| Phase 04-chemistry-validation P01 | 2 | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -79,6 +80,8 @@ Recent decisions affecting current work:
 - [Phase 02-architecture-scaffold]: Route group layouts are div-only wrappers — html/body tags kept in root layout only to prevent second root layout and cross-group navigation breakage
 - [Phase 03-landing-page]: Used data-driven STEPS array for 3-step explainer matching intro-tab.tsx pattern
 - [Phase 03-landing-page]: CO2 figure 40 kg from 15L diesel * 2.68 kg CO2/L representative 3-stream scenario
+- [Phase 04-chemistry-validation]: AssumptionsPanel takes zero props and renders unconditionally — static informational content pattern
+- [Phase 04-chemistry-validation]: Badge text is 'Theoretical estimate — not yet calibrated' (new wording, distinct from expert-overrides.tsx 'Pending Fit')
 
 ### Pending Todos
 
@@ -91,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-27T11:26:07.196Z
-Stopped at: Phase 4 UI-SPEC approved
-Resume file: .planning/phases/04-chemistry-validation/04-UI-SPEC.md
+Last session: 2026-03-27T11:37:59.737Z
+Stopped at: Completed 04-01 assumptions-panel + sensitivity-note components
+Resume file: None
