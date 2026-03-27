@@ -14,10 +14,10 @@
 
 ### Landing Page
 
-- [ ] **LAND-01**: Visitor sees a hero section that leads with the cost pain of solo processing, then presents blending as the solution
-- [ ] **LAND-02**: Visitor sees a 3-step visual explainer (load streams → optimize → get a plan) that takes under 30 seconds to understand with no jargon
-- [ ] **LAND-03**: Visitor sees a climate impact section that expresses fuel savings in CO₂ equivalent terms
-- [ ] **LAND-04**: Visitor can enter the dashboard demo from the landing page via a single prominent CTA, with example data pre-loaded
+- [x] **LAND-01**: Visitor sees a hero section that leads with the cost pain of solo processing, then presents blending as the solution
+- [x] **LAND-02**: Visitor sees a 3-step visual explainer (load streams → optimize → get a plan) that takes under 30 seconds to understand with no jargon
+- [x] **LAND-03**: Visitor sees a climate impact section that expresses fuel savings in CO₂ equivalent terms
+- [x] **LAND-04**: Visitor can enter the dashboard demo from the landing page via a single prominent CTA, with example data pre-loaded
 
 ### Chemistry Validation
 
@@ -77,10 +77,10 @@
 | BUG-02 | Phase 1: Critical Bug Fixes | Complete |
 | BUG-03 | Phase 1: Critical Bug Fixes | Complete |
 | BUG-04 | Phase 1: Critical Bug Fixes | Complete |
-| LAND-01 | Phase 3: Landing Page | Pending |
-| LAND-02 | Phase 3: Landing Page | Pending |
-| LAND-03 | Phase 3: Landing Page | Pending |
-| LAND-04 | Phase 3: Landing Page | Pending |
+| LAND-01 | Phase 3: Landing Page | Complete |
+| LAND-02 | Phase 3: Landing Page | Complete |
+| LAND-03 | Phase 3: Landing Page | Complete |
+| LAND-04 | Phase 3: Landing Page | Complete |
 | CHEM-01 | Phase 4: Chemistry Validation | Pending |
 | CHEM-02 | Phase 4: Chemistry Validation | Pending |
 | CHEM-03 | Phase 4: Chemistry Validation | Pending |

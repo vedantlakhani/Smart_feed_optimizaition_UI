@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-architecture-scaffold/02-02-PLAN.md
-last_updated: "2026-03-27T02:47:29.274Z"
+stopped_at: Completed 03-landing-page/03-01-PLAN.md
+last_updated: "2026-03-27T03:13:52.047Z"
 last_activity: 2026-03-26 -- Completed 02-01 design tokens + brand color utilities
 progress:
   total_phases: 6
   completed_phases: 2
-  total_plans: 4
-  completed_plans: 4
+  total_plans: 6
+  completed_plans: 5
   percent: 55
 ---
 
@@ -55,6 +55,7 @@ Progress: [█████▌░░░░] 55%
 | Phase 02-architecture-scaffold P01 | 6 | 2 tasks | 10 files |
 | Phase 02-architecture-scaffold P02 | 8 | 2 tasks | 5 files |
 | Phase 02-architecture-scaffold P02 | 15 | 2 tasks | 5 files |
+| Phase 03-landing-page P01 | 3 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -76,6 +77,8 @@ Recent decisions affecting current work:
 - [Phase 02-architecture-scaffold]: demo_3stream.json pinned via sort comparator in input-files API so adding future files does not break deterministic auto-load on first visit
 - [Phase 02-architecture-scaffold]: LandingPage at (marketing)/page.tsx is a Server Component — no use client needed for placeholder with static link
 - [Phase 02-architecture-scaffold]: Route group layouts are div-only wrappers — html/body tags kept in root layout only to prevent second root layout and cross-group navigation breakage
+- [Phase 03-landing-page]: Used data-driven STEPS array for 3-step explainer matching intro-tab.tsx pattern
+- [Phase 03-landing-page]: CO2 figure 40 kg from 15L diesel * 2.68 kg CO2/L representative 3-stream scenario
 
 ### Pending Todos
 
@@ -88,6 +91,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-27T02:39:50.493Z
-Stopped at: Completed 02-architecture-scaffold/02-02-PLAN.md
+Last session: 2026-03-27T03:13:52.045Z
+Stopped at: Completed 03-landing-page/03-01-PLAN.md
 Resume file: None
