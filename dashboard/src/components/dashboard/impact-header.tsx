@@ -4,6 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { NumberTicker } from "@/components/magicui/number-ticker";
 import { TrendingDown, Fuel, Clock } from "lucide-react";
 import type { OptimizationResult } from "@/lib/types";
+import { SensitivityNote } from "@/components/dashboard/sensitivity-note";
 
 interface ImpactHeaderProps {
   result: OptimizationResult | null;
@@ -36,6 +37,7 @@ interface KpiCardProps {
   hasResult: boolean;
   decimalPlaces?: number;
   isLast?: boolean;
+  bottomNote?: React.ReactNode;
 }
 
 function KpiCard({
@@ -50,6 +52,7 @@ function KpiCard({
   hasResult,
   decimalPlaces = 0,
   isLast = false,
+  bottomNote,
 }: KpiCardProps) {
   return (
     <div
@@ -91,6 +94,7 @@ function KpiCard({
           {targetLabel}
         </div>
       )}
+      {bottomNote}
     </div>
   );
 }
@@ -114,6 +118,7 @@ export function ImpactHeader({ result, loading }: ImpactHeaderProps) {
           valueColor="#ff8c00"
           loading={loading}
           hasResult={hasResult}
+          bottomNote={hasResult ? <SensitivityNote className="mt-1 text-center justify-center" /> : undefined}
         />
         <KpiCard
           icon={<Fuel className="w-4 h-4" style={{ color: "#2aabe1" }} />}

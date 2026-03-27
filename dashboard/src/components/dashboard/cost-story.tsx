@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/table";
 import { TrendingDown, TrendingUp, Minus, BarChart3, Leaf } from "lucide-react";
 import type { OptimizationResult, PhaseResult } from "@/lib/types";
+import { SensitivityNote } from "@/components/dashboard/sensitivity-note";
 
 interface CostStoryProps {
   result: OptimizationResult | null;
@@ -175,6 +176,10 @@ export function CostStory({ result, loading }: CostStoryProps) {
           </Table>
         </CardContent>
       </Card>
+      {/* CHEM-03: Sensitivity note below cost comparison table */}
+      <div className="px-5 pb-3">
+        <SensitivityNote />
+      </div>
 
       {/* Climate Impact */}
       <Card className="shadow-sm border-slate-200 card-accent-emerald">
@@ -220,6 +225,8 @@ export function CostStory({ result, loading }: CostStoryProps) {
             <p className="text-xs text-slate-400 mt-1">
               Overall OpEx savings from optimal multi-stream blending schedule
             </p>
+            {/* CHEM-03: Sensitivity note below Total Cost Reduction bar */}
+            <SensitivityNote className="mt-2" />
           </div>
         </CardContent>
       </Card>
