@@ -75,11 +75,11 @@ Plans:
   2. Chemistry details use three-tier progressive disclosure: plain language summary always visible, formula expandable on click, full derivation expandable on second click
   3. Every cost savings figure (savings %, dollar amounts) is accompanied by a visible sensitivity note explaining these are directional estimates pending K-value calibration
   4. All 9 MVP assumptions (A1-A9) are each stated in one plain-English sentence, accessible from within the dashboard
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
+- [ ] 04-01-PLAN.md — Create assumptions-panel.tsx (CHEM-01, CHEM-04: K-values + 9 MVP assumptions) and sensitivity-note.tsx (CHEM-03: inline amber callout)
+- [ ] 04-02-PLAN.md — Wire components: SensitivityNote in cost-story + impact-header (CHEM-03), three-tier disclosure in phase-details-tab (CHEM-02), AssumptionsPanel in page.tsx (CHEM-01, CHEM-04)
 
 ### Phase 5: Dashboard UX Redesign
 **Goal**: Every user-facing string passes the "plant operator can read this" test, and the layout tells a cost-savings story
