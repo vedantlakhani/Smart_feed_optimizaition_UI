@@ -25,11 +25,11 @@ interface ManifestTabProps {
 }
 
 const STREAM_COLORS = [
-  { border: "border-ax-orange", bg: "bg-[#fff7ed]", text: "text-ax-orange" },
-  { border: "border-ax-cyan", bg: "bg-[#ecfeff]", text: "text-ax-cyan" },
-  { border: "border-[#10b981]", bg: "bg-[#ecfdf5]", text: "text-[#10b981]" },
-  { border: "border-[#ef4444]", bg: "bg-[#fef2f2]", text: "text-[#ef4444]" },
-  { border: "border-[#8b5cf6]", bg: "bg-[#f5f3ff]", text: "text-[#8b5cf6]" },
+  { border: "border-[#2b2a2b]", bg: "bg-[#f5f5f5]", text: "text-[#2b2a2b]" },
+  { border: "border-ax-cyan",   bg: "bg-[#e8f6fd]", text: "text-ax-cyan" },
+  { border: "border-[#11415c]", bg: "bg-[#e8f1f5]", text: "text-[#11415c]" },
+  { border: "border-slate-400", bg: "bg-slate-100",  text: "text-slate-600" },
+  { border: "border-slate-300", bg: "bg-slate-50",   text: "text-slate-500" },
 ];
 
 function PhBadge({ ph }: { ph: number }) {

@@ -21,15 +21,7 @@ interface OperationTabProps {
   loading: boolean;
 }
 
-const PHASE_COLORS = [
-  { bg: "bg-[#fff7ed]", border: "border-ax-orange", text: "text-ax-orange", badge: "border-ax-orange/40 bg-[#fff7ed] text-ax-orange" },
-  { bg: "bg-[#ecfeff]", border: "border-ax-cyan", text: "text-ax-cyan", badge: "border-ax-cyan/40 bg-[#ecfeff] text-ax-cyan" },
-  { bg: "bg-[#ecfdf5]", border: "border-[#10b981]", text: "text-[#10b981]", badge: "border-[#10b981]/40 bg-[#ecfdf5] text-[#10b981]" },
-  { bg: "bg-[#fef2f2]", border: "border-red-400", text: "text-red-500", badge: "border-red-300 bg-red-50 text-red-600" },
-  { bg: "bg-[#f5f3ff]", border: "border-purple-400", text: "text-purple-600", badge: "border-purple-300 bg-purple-50 text-purple-600" },
-];
-
-const STREAM_COLORS = ["#ff8c00", "#06b6d4", "#10b981", "#ef4444", "#8b5cf6"];
+const STREAM_COLORS = ["#2b2a2b", "#2aabe1", "#11415c", "#64748b", "#94a3b8"];
 
 function EmptyState() {
   return (
@@ -91,7 +83,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
         <span className="text-sm font-bold text-slate-900 uppercase tracking-widest">
           Operator Work Instructions — {optimized.phases.length} Phase{optimized.phases.length !== 1 ? "s" : ""}
         </span>
-        <Badge variant="outline" className="border-ax-orange/40 bg-[#fff7ed] text-ax-orange text-xs ml-auto">
+        <Badge variant="outline" className="border-slate-300 text-slate-500 text-xs ml-auto">
           Print-Ready
         </Badge>
       </div>
@@ -107,7 +99,6 @@ export function OperationTab({ result, loading }: OperationTabProps) {
 
       {/* Phase cards */}
       {optimized.phases.map((phase, idx) => {
-        const col = PHASE_COLORS[idx % PHASE_COLORS.length];
         const streamEntries = Object.entries(phase.streams);
         const totalRatioSum = streamEntries.reduce((s, [, r]) => s + r, 0);
 
@@ -128,13 +119,13 @@ export function OperationTab({ result, loading }: OperationTabProps) {
         return (
           <Card
             key={idx}
-            className={`shadow-sm border-slate-200 border-l-4 ${col.border}`}
+            className="shadow-sm border-slate-200 border-l-4 border-l-[#2b2a2b]"
           >
             <CardHeader className="pb-3 pt-4 px-5">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-2.5">
-                  <div className={`px-2.5 py-1 rounded-lg ${col.bg} border ${col.border}`}>
-                    <span className={`font-data font-bold text-sm uppercase tracking-widest ${col.text}`}>
+                  <div className="px-2.5 py-1 bg-[#2b2a2b]">
+                    <span className="font-data font-bold text-sm uppercase tracking-widest text-white">
                       Phase {idx + 1}
                     </span>
                   </div>
@@ -151,7 +142,7 @@ export function OperationTab({ result, loading }: OperationTabProps) {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className={`font-data text-lg font-bold ${col.text}`}>
+                  <div className="font-data text-lg font-bold text-ax-cyan">
                     ${phase.cost_total.toFixed(0)}
                   </div>
                   <div className="text-xs text-slate-400">phase cost</div>
@@ -278,27 +269,27 @@ export function OperationTab({ result, loading }: OperationTabProps) {
                   <div className="mt-2 pt-2 border-t border-slate-100">
                     <div className="flex justify-between text-xs text-slate-500 mb-1">
                       <span>Diesel</span>
-                      <span className="font-data text-ax-orange">${phase.cost_diesel.toFixed(2)}</span>
+                      <span className="font-data text-slate-700">${phase.cost_diesel.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-xs text-slate-500 mb-1">
                       <span>NaOH</span>
-                      <span className="font-data text-emerald-600">${phase.cost_naoh.toFixed(2)}</span>
+                      <span className="font-data text-slate-700">${phase.cost_naoh.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-xs text-slate-500 mb-1">
                       <span>Water</span>
-                      <span className="font-data text-blue-500">${phase.cost_water.toFixed(2)}</span>
+                      <span className="font-data text-slate-700">${phase.cost_water.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-xs text-slate-500 mb-1">
                       <span>Electricity</span>
-                      <span className="font-data text-indigo-500">${phase.cost_electricity.toFixed(2)}</span>
+                      <span className="font-data text-slate-700">${phase.cost_electricity.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-xs text-slate-500 mb-2">
                       <span>Labour</span>
-                      <span className="font-data text-slate-600">${phase.cost_labor.toFixed(2)}</span>
+                      <span className="font-data text-slate-700">${phase.cost_labor.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-sm font-semibold border-t border-slate-200 pt-2">
                       <span className="text-slate-700">Phase Total</span>
-                      <span className={`font-data font-bold ${col.text}`}>
+                      <span className="font-data font-bold text-ax-cyan">
                         ${phase.cost_total.toFixed(2)}
                       </span>
                     </div>

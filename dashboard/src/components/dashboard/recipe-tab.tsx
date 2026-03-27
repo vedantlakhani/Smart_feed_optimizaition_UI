@@ -22,15 +22,8 @@ interface RecipeTabProps {
   loading: boolean;
 }
 
-const STREAM_COLORS = ["#ff8c00", "#06b6d4", "#10b981", "#ef4444", "#8b5cf6"];
-const STREAM_BG = ["#fff7ed", "#ecfeff", "#ecfdf5", "#fef2f2", "#f5f3ff"];
-const STREAM_BORDER = [
-  "border-ax-orange",
-  "border-ax-cyan",
-  "border-[#10b981]",
-  "border-[#ef4444]",
-  "border-[#8b5cf6]",
-];
+// AxNano brand palette — charcoal, cyan, navy, slate, gray
+const STREAM_COLORS = ["#2b2a2b", "#2aabe1", "#11415c", "#64748b", "#94a3b8"];
 
 function EmptyState() {
   return (
@@ -143,36 +136,26 @@ export function RecipeTab({ result, loading }: RecipeTabProps) {
           return (
             <Card
               key={idx}
-              className="relative overflow-hidden shadow-sm border-slate-200 hover:shadow-md transition-shadow"
+              className="relative overflow-hidden shadow-sm border-slate-200 border-l-4 border-l-[#2b2a2b] hover:shadow-md transition-shadow"
             >
-              <BorderBeam
-                size={300}
-                duration={10}
-                delay={idx * 2}
-                colorFrom="#06b6d4"
-                colorTo="#ff8c00"
-                borderWidth={1}
-              />
               <CardContent className="p-4">
                 <div className="flex items-start justify-between">
                   {/* Phase label + streams */}
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="px-2 py-0.5 rounded bg-slate-900 text-white text-xs font-bold uppercase tracking-widest font-data">
+                      <div className="px-2 py-0.5 bg-[#2b2a2b] text-white text-xs font-bold uppercase tracking-widest font-data">
                         Phase {idx + 1}
                       </div>
                       {streamEntries.map(([sid, ratio]) => {
                         const si = allStreamIds.indexOf(sid);
-                        const col = STREAM_COLORS[si % STREAM_COLORS.length];
-                        const bg = STREAM_BG[si % STREAM_BG.length];
-                        const bd = STREAM_BORDER[si % STREAM_BORDER.length];
+                        const dotColor = STREAM_COLORS[si % STREAM_COLORS.length];
                         return (
                           <Badge
                             key={sid}
                             variant="outline"
-                            className={`text-xs font-data border ${bd}`}
-                            style={{ color: col, backgroundColor: bg }}
+                            className="text-xs font-data border-slate-300 text-slate-600 bg-white gap-1.5"
                           >
+                            <span className="w-1.5 h-1.5 rounded-full inline-block" style={{ backgroundColor: dotColor }} />
                             {sid} ×{ratio}
                           </Badge>
                         );
