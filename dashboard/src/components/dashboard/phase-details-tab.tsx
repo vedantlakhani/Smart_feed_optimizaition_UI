@@ -26,13 +26,6 @@ interface PhaseDetailsTabProps {
   loading: boolean;
 }
 
-const PHASE_COLORS = [
-  { text: "text-ax-orange", bg: "bg-[#fff7ed]", border: "border-l-ax-orange" },
-  { text: "text-ax-cyan", bg: "bg-[#ecfeff]", border: "border-l-ax-cyan" },
-  { text: "text-[#10b981]", bg: "bg-[#ecfdf5]", border: "border-l-[#10b981]" },
-  { text: "text-red-500", bg: "bg-red-50", border: "border-l-red-400" },
-  { text: "text-purple-600", bg: "bg-purple-50", border: "border-l-purple-400" },
-];
 
 function EmptyState() {
   return (
@@ -78,7 +71,6 @@ function SafetyCheck({ label, value, ok, limit, unit = "" }: {
 }
 
 function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg: SystemConfig }) {
-  const col = PHASE_COLORS[idx % PHASE_COLORS.length];
   const dilution = 1 + phase.r_water + phase.r_diesel + phase.r_naoh;
   const solidEff = phase.blend_props.solid_pct / dilution;
   const saltEff = phase.blend_props.salt_ppm / dilution;
@@ -86,21 +78,21 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
   const wOk = phase.W >= cfg.W_min;
 
   const costRows = [
-    { label: "Diesel", value: phase.cost_diesel, color: "text-ax-orange" },
-    { label: "NaOH", value: phase.cost_naoh, color: "text-emerald-600" },
-    { label: "Water", value: phase.cost_water, color: "text-blue-500" },
-    { label: "Electricity", value: phase.cost_electricity, color: "text-indigo-500" },
-    { label: "Labour", value: phase.cost_labor, color: "text-slate-600" },
+    { label: "Diesel", value: phase.cost_diesel, color: "text-slate-700" },
+    { label: "NaOH", value: phase.cost_naoh, color: "text-slate-700" },
+    { label: "Water", value: phase.cost_water, color: "text-slate-700" },
+    { label: "Electricity", value: phase.cost_electricity, color: "text-slate-700" },
+    { label: "Labour", value: phase.cost_labor, color: "text-slate-700" },
   ];
   const costTotal = costRows.reduce((s, r) => s + r.value, 0);
 
   return (
     <AccordionItem value={`phase-${idx}`} className="border-slate-200 mb-2 last:mb-0">
-      <Card className={`shadow-sm border-slate-200 border-l-4 ${col.border} overflow-hidden`}>
+      <Card className="shadow-sm border-slate-200 border-l-4 border-l-[#2b2a2b] overflow-hidden">
         <AccordionTrigger className="px-5 py-3 hover:no-underline hover:bg-slate-50 [&>svg]:text-slate-400 w-full">
           <div className="flex items-center gap-3 text-left w-full">
-            <div className={`px-2.5 py-1 rounded-lg ${col.bg}`}>
-              <span className={`font-data font-bold text-sm uppercase tracking-widest ${col.text}`}>Phase {idx + 1}</span>
+            <div className="px-2.5 py-1 bg-[#2b2a2b]">
+              <span className="font-data font-bold text-sm uppercase tracking-widest text-white">Phase {idx + 1}</span>
             </div>
             <div>
               <p className="text-sm font-semibold text-slate-800">
@@ -147,27 +139,126 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
                 </Table>
               </div>
 
-              {/* Gatekeeper Rates */}
+              {/* Gatekeeper Rates — progressive disclosure */}
               <div>
                 <p className="text-xs font-bold text-ax-cyan uppercase tracking-widest mb-2">
-                  Gatekeeper Rates (L/L)
+                  Additive Rates
                 </p>
-                <Table>
-                  <TableBody>
-                    {[
-                      { label: "r_water", value: phase.r_water.toFixed(6), color: "text-blue-500" },
-                      { label: "r_diesel", value: phase.r_diesel.toFixed(6), color: "text-ax-orange" },
-                      { label: "r_naoh", value: phase.r_naoh.toFixed(6), color: "text-emerald-600" },
-                      { label: "r_ext", value: phase.r_ext.toFixed(6), color: "text-slate-700" },
-                      { label: "W (L/min)", value: phase.W.toFixed(4), color: wOk ? "text-ax-cyan" : "text-red-500" },
-                    ].map(({ label, value, color }) => (
-                      <TableRow key={label} className="border-slate-100 hover:bg-slate-50/40">
-                        <TableCell className="font-data text-xs text-slate-500 py-1.5 pl-0">{label}</TableCell>
-                        <TableCell className={`text-right font-data text-xs font-semibold pr-0 ${color}`}>{value}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                <div className="space-y-3">
+
+                  {/* r_water — two-tier: plain + formula */}
+                  <div>
+                    <p className="text-sm text-slate-600">
+                      Added {(phase.r_water * 100).toFixed(2)}% water to reach reaction temperature.
+                    </p>
+                    <Accordion multiple>
+                      <AccordionItem value="r_water_formula" className="border-0">
+                        <AccordionTrigger className="text-xs text-slate-400 hover:text-slate-600 py-1 hover:no-underline [&>svg]:w-3 [&>svg]:h-3">
+                          Show formula
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-1">
+                          <code className="font-data text-xs text-slate-600 block">
+                            r_water = max(0, (BTU_min − BTU_blend) / (BTU_eff_water − BTU_blend))
+                          </code>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
+
+                  {/* r_diesel — two-tier: plain + formula */}
+                  <div>
+                    <p className="text-sm text-slate-600">
+                      Added {(phase.r_diesel * 100).toFixed(2)}% fuel supplement to boost energy.
+                    </p>
+                    <Accordion multiple>
+                      <AccordionItem value="r_diesel_formula" className="border-0">
+                        <AccordionTrigger className="text-xs text-slate-400 hover:text-slate-600 py-1 hover:no-underline [&>svg]:w-3 [&>svg]:h-3">
+                          Show formula
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-1">
+                          <code className="font-data text-xs text-slate-600 block">
+                            r_diesel = max(0, (BTU_min×(1+r_water) − BTU_blend) / (BTU_diesel×η − BTU_min))
+                          </code>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
+
+                  {/* r_naoh — three-tier: plain + formula + derivation */}
+                  <div>
+                    <p className="text-sm text-slate-600">
+                      Added {(phase.r_naoh * 100).toFixed(2)}% neutralizer to keep pH in the safe operating range.
+                    </p>
+                    <Accordion multiple>
+                      <AccordionItem value="r_naoh_formula" className="border-0">
+                        <AccordionTrigger className="text-xs text-slate-400 hover:text-slate-600 py-1 hover:no-underline [&>svg]:w-3 [&>svg]:h-3">
+                          Show formula
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-1">
+                          <code className="font-data text-xs text-slate-600 block">
+                            r_naoh = (F_ppm × K_F_TO_ACID − max(0, pH−7) × K_PH_TO_BASE) × K_ACID_TO_NAOH_VOL
+                          </code>
+                          {/* Tier 3 — derivation nested inside Tier 2 content */}
+                          <Accordion multiple className="mt-1">
+                            <AccordionItem value="r_naoh_derivation" className="border-0">
+                              <AccordionTrigger className="text-xs text-slate-400 hover:text-slate-600 py-1 hover:no-underline [&>svg]:w-3 [&>svg]:h-3">
+                                Show derivation
+                              </AccordionTrigger>
+                              <AccordionContent className="pb-1">
+                                <p className="text-xs text-slate-500 leading-relaxed">
+                                  The neutralizer volume is computed in three steps: (1) convert fluoride concentration to an acid load using K_F_TO_ACID — a theoretical factor from chemistry first principles; (2) subtract any base load contributed by an alkaline-pH stream using K_PH_TO_BASE; (3) convert the net acid load to a NaOH solution volume using K_ACID_TO_NAOH_VOL (derived from the stoichiometry of 35% NaOH at 12 075 meq/L). Both K_F_TO_ACID and K_PH_TO_BASE are theoretical estimates that have not yet been measured on the reactor.
+                                </p>
+                              </AccordionContent>
+                            </AccordionItem>
+                          </Accordion>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
+
+                  {/* pH blending — three-tier: plain + formula + derivation */}
+                  <div>
+                    <p className="text-sm text-slate-600">
+                      Blended pH: {phase.blend_props.pH.toFixed(3)} — computed from hydrogen-ion concentrations, not a simple average.
+                    </p>
+                    <Accordion multiple>
+                      <AccordionItem value="ph_formula" className="border-0">
+                        <AccordionTrigger className="text-xs text-slate-400 hover:text-slate-600 py-1 hover:no-underline [&>svg]:w-3 [&>svg]:h-3">
+                          Show formula
+                        </AccordionTrigger>
+                        <AccordionContent className="pb-1">
+                          <code className="font-data text-xs text-slate-600 block">
+                            pH = −log₁₀( Σ(10^(−pHᵢ) × rᵢ) / Σrᵢ )
+                          </code>
+                          {/* Tier 3 — derivation */}
+                          <Accordion multiple className="mt-1">
+                            <AccordionItem value="ph_derivation" className="border-0">
+                              <AccordionTrigger className="text-xs text-slate-400 hover:text-slate-600 py-1 hover:no-underline [&>svg]:w-3 [&>svg]:h-3">
+                                Show derivation
+                              </AccordionTrigger>
+                              <AccordionContent className="pb-1">
+                                <p className="text-xs text-slate-500 leading-relaxed">
+                                  pH is a logarithmic scale of hydrogen-ion (H⁺) concentration. A simple average of two pH values would be physically wrong — mixing equal volumes of pH 3 and pH 11 produces near-neutral pH, not pH 7. The correct method converts each stream&apos;s pH to H⁺ concentration (10^(−pH)), averages the concentrations weighted by mix volume, then converts back to pH. This matches laboratory measurements to within the accuracy of the linear-blending assumption (A4).
+                                </p>
+                              </AccordionContent>
+                            </AccordionItem>
+                          </Accordion>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
+
+                  {/* r_ext and W — plain only, no disclosure needed */}
+                  <div className="flex justify-between text-xs pt-1 border-t border-slate-100">
+                    <span className="text-slate-500 font-data">r_ext (total)</span>
+                    <span className="font-data font-semibold text-slate-700">{phase.r_ext.toFixed(6)}</span>
+                  </div>
+                  <div className="flex justify-between text-xs">
+                    <span className="text-slate-500 font-data">W (L/min)</span>
+                    <span className={`font-data font-semibold ${wOk ? "text-ax-cyan" : "text-red-500"}`}>{phase.W.toFixed(4)}</span>
+                  </div>
+
+                </div>
               </div>
 
               {/* Itemised Costs */}
@@ -190,7 +281,7 @@ function PhaseDetail({ phase, idx, cfg }: { phase: PhaseResult; idx: number; cfg
                   ))}
                   <div className="flex justify-between pt-2 border-t border-slate-200">
                     <span className="text-sm font-semibold text-slate-700">Total</span>
-                    <span className={`font-data text-sm font-bold ${col.text}`}>${phase.cost_total.toFixed(2)}</span>
+                    <span className="font-data text-sm font-bold text-ax-cyan">${phase.cost_total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
