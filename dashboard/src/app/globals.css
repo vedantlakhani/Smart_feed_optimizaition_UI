@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Open+Sans:wght@300;400;600;700;800&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -46,10 +46,13 @@
   --radius-2xl: calc(var(--radius) * 1.8);
 
   /* Custom Ax-brand colors */
-  --color-ax-cyan: #06b6d4;
-  --color-ax-cyan-light: #ecfeff;
+  --color-ax-cyan: #2aabe1;
+  --color-ax-cyan-light: #e8f6fd;
   --color-ax-orange: #ff8c00;
   --color-ax-orange-light: #fff7ed;
+  --color-ax-charcoal: #2b2a2b;
+  --color-ax-navy: #11415c;
+  --color-ax-gray: #737373;
 
   /* Elevation shadows (Apple-like card depth) */
   --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.07), 0 1px 2px -1px rgb(0 0 0 / 0.07);
@@ -172,13 +175,13 @@
 
   html {
     background-color: #f8fafc;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Open Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Open Sans', system-ui, sans-serif;
   }
 
   /* Monospace for data values */
@@ -195,7 +198,7 @@
   border-top: 3px solid #ff8c00;
 }
 .card-accent-cyan {
-  border-top: 3px solid #06b6d4;
+  border-top: 3px solid #2aabe1;
 }
 .card-accent-slate {
   border-top: 3px solid #475569;
@@ -208,7 +211,7 @@
    PROGRESS BAR OVERRIDES (Ax brand colors)
 ═══════════════════════════════════════════════════ */
 .progress-cyan [data-slot="progress-indicator"] {
-  background-color: #06b6d4;
+  background-color: #2aabe1;
 }
 .progress-orange [data-slot="progress-indicator"] {
   background-color: #ff8c00;
@@ -218,9 +221,8 @@
    TOPBAR GLASS BORDER
 ═══════════════════════════════════════════════════ */
 .topbar {
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid #e2e8f0;
+  background: #2b2a2b;
+  border-bottom: 2px solid #2aabe1;
   position: sticky;
   top: 0;
   z-index: 50;
@@ -230,7 +232,7 @@
    PHASE STREAM COLORS
 ═══════════════════════════════════════════════════ */
 .stream-0 { color: #ff8c00; border-color: #ff8c00; background-color: #fff7ed; }
-.stream-1 { color: #06b6d4; border-color: #06b6d4; background-color: #ecfeff; }
+.stream-1 { color: #2aabe1; border-color: #2aabe1; background-color: #e8f6fd; }
 .stream-2 { color: #10b981; border-color: #10b981; background-color: #ecfdf5; }
 .stream-3 { color: #ef4444; border-color: #ef4444; background-color: #fef2f2; }
 .stream-4 { color: #8b5cf6; border-color: #8b5cf6; background-color: #f5f3ff; }
