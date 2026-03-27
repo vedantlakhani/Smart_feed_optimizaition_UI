@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { spawn } from "child_process";
+import { existsSync } from "fs";
 import path from "path";
 import os from "os";
 
@@ -15,10 +16,9 @@ function getPythonPath(): string {
     "python3",
   ];
   // Return first existing; spawn will error if none work
-  const fs = require("fs");
   for (const p of candidates) {
     try {
-      if (p.startsWith("/") && fs.existsSync(p)) return p;
+      if (p.startsWith("/") && existsSync(p)) return p;
     } catch { /* ignore */ }
   }
   return "python3";
